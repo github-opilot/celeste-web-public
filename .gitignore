@@ -1,0 +1,47 @@
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+supabase/functions/.env
+supabase/functions/.env.*
+
+# Dependencies, caches, builds
+node_modules
+.tmp/
+dist/
+coverage/
+__pycache__/
+*.tsbuildinfo
+.wrangler/
+.dev.vars
+
+# User-provided Celeste installation, archives, saves, and generated binaries
+Celeste.exe
+Celeste.dll
+Celeste/Content/
+Celeste/Saves/
+Celeste/Mods/
+Content/
+Saves/
+Mods/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.dll
+*.exe
+*.wasm
+*.wasm[0-9]*
+*.bank
+
+# Private storage/export locations
+private-celeste/
+private-game/
+celeste-private-*
+Celeste-install-*
+
+# OS and editor
+.DS_Store
+.vscode/

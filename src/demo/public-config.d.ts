@@ -1,0 +1,1 @@
+declare const __CELESTE_RUNTIME_BASE_URL__: string

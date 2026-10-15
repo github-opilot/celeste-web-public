@@ -1,0 +1,4 @@
+[functions.username-login]
+# Login starts without a user JWT; the function validates credentials through
+# Supabase Auth and applies its own server-side origin and rate-limit controls.
+verify_jwt = false
