@@ -126,13 +126,13 @@ export async function inspectSaveArchive(blob: Blob): Promise<{
   fileCount: number
 }> {
   const bytes = new Uint8Array(await blob.arrayBuffer())
-  if (bytes.length === 0) throw new Error('L’archive de sauvegarde est vide.')
+  if (bytes.length === 0) throw new Error('The save archive is empty.')
   const archiveSha256 = await sha256(bytes)
   const compressed = bytes[0] === 0x1f && bytes[1] === 0x8b
   let stream = asGzipStream(blob)
   if (compressed) {
     if (typeof DecompressionStream === 'undefined') {
-      throw new Error('Ce navigateur ne peut pas vérifier une archive gzip de sauvegardes.')
+      throw new Error('This browser cannot verify a gzip save archive.')
     }
     stream = stream.pipeThrough(
       new DecompressionStream('gzip') as unknown as ReadableWritablePair<Uint8Array, Uint8Array>,
@@ -143,7 +143,7 @@ export async function inspectSaveArchive(blob: Blob): Promise<{
   for await (const entry of readTar(stream)) {
     const contents = new Uint8Array(await new Response(entry.body).arrayBuffer())
     if (contents.byteLength !== entry.size) {
-      throw new Error(`La sauvegarde « ${entry.path} » est tronquée.`)
+      throw new Error(`Save file "${entry.path}" is truncated.`)
     }
     entries.push({ path: entry.path, size: entry.size, sha256: await sha256(contents) })
   }
@@ -178,7 +178,7 @@ export class CloudSaveService {
       if (current.contentHash === previous.contentHash) return current
       previous = current
     }
-    throw new Error('Les sauvegardes changent encore. Attends la fin de l’écriture puis réessaie.')
+    throw new Error('Saves are still changing. Wait for writing to finish, then try again.')
   }
 
   async saveNow(userId: string): Promise<CloudSaveResult> {
@@ -202,7 +202,7 @@ export class CloudSaveService {
     const pending = await this.repository.getPending(userId)
     if (!pending.length) return { status: 'idle' }
     if (typeof navigator !== 'undefined' && navigator.onLine === false) {
-      return { status: 'queued', message: `${pending.length} copie(s) locale(s) attend(ent) le retour de la connexion.` }
+      return { status: 'queued', message: `${pending.length} local save(s) are waiting for a connection.` }
     }
 
     let lastResult: CloudSaveResult = { status: 'idle' }
@@ -210,7 +210,7 @@ export class CloudSaveService {
       try {
         const inspected = await inspectSaveArchive(snapshot.archive)
         if (inspected.archiveSha256 !== snapshot.archiveSha256) {
-          throw new Error('La copie locale en attente ne passe plus la vérification d’intégrité.')
+          throw new Error('The pending local copy failed its integrity check.')
         }
         lastResult = await this.uploadSnapshot(snapshot)
       } catch (error) {
@@ -225,7 +225,7 @@ export class CloudSaveService {
       limit: 100,
       sortBy: { column: 'name', order: 'desc' },
     })
-    if (error) throw new Error(`Impossible de lire les sauvegardes cloud : ${error.message}`)
+    if (error) throw new Error(`Could not read cloud saves: ${error.message}`)
     return (data ?? [])
       .map((item) => versionFromName(item.name))
       .filter((item): item is CloudSaveVersion => item !== null)
@@ -242,17 +242,17 @@ export class CloudSaveService {
     confirm: (details: RestoreConfirmation) => boolean | Promise<boolean>,
   ): Promise<RestoreResult> {
     const version = (await this.listVersions(userId)).find((item) => item.name === versionName)
-    if (!version) throw new Error('Cette version n’existe plus dans ton espace cloud.')
+    if (!version) throw new Error('This version no longer exists in your cloud storage.')
 
     const path = `${userId}/${version.name}`
     const { data: archive, error } = await this.storage.from(CLOUD_SAVE_BUCKET).download(path)
     if (error || !archive) {
-      throw new Error(`Impossible de télécharger la sauvegarde cloud${error ? ` : ${error.message}` : '.'}`)
+      throw new Error(`Could not download the cloud save${error ? `: ${error.message}` : '.'}`)
     }
 
     const remote = await inspectSaveArchive(archive)
     if (remote.archiveSha256 !== version.sha256 || remote.contentHash !== version.contentHash) {
-      throw new Error('La sauvegarde cloud a été altérée : son empreinte SHA-256 ne correspond pas.')
+      throw new Error('The cloud save was modified: its SHA-256 hash does not match.')
     }
 
     const local = await this.captureStableLocal(userId, 2, 100)
@@ -340,7 +340,7 @@ export class CloudSaveService {
       snapshot.archive,
       { cacheControl: '0', contentType: 'application/gzip', upsert: false },
     )
-    if (error) throw new Error(`Impossible d’envoyer la sauvegarde cloud : ${error.message}`)
+    if (error) throw new Error(`Could not upload cloud save: ${error.message}`)
 
     await this.repository.putSyncState({
       userId: snapshot.userId,
@@ -357,15 +357,15 @@ export class CloudSaveService {
 function requestResult<T>(request: IDBRequest<T>): Promise<T> {
   return new Promise((resolve, reject) => {
     request.onsuccess = () => resolve(request.result)
-    request.onerror = () => reject(request.error ?? new Error('IndexedDB a refusé la requête.'))
+    request.onerror = () => reject(request.error ?? new Error('IndexedDB rejected the request.'))
   })
 }
 
 function transactionDone(transaction: IDBTransaction): Promise<void> {
   return new Promise((resolve, reject) => {
     transaction.oncomplete = () => resolve()
-    transaction.onabort = () => reject(transaction.error ?? new Error('La transaction IndexedDB a été annulée.'))
-    transaction.onerror = () => reject(transaction.error ?? new Error('La transaction IndexedDB a échoué.'))
+    transaction.onabort = () => reject(transaction.error ?? new Error('The IndexedDB transaction was aborted.'))
+    transaction.onerror = () => reject(transaction.error ?? new Error('The IndexedDB transaction failed.'))
   })
 }
 
@@ -386,8 +386,8 @@ export function createBrowserCloudSaveRepository(indexedDb: IDBFactory = indexed
         }
       }
       request.onsuccess = () => resolve(request.result)
-      request.onerror = () => reject(request.error ?? new Error('IndexedDB est indisponible.'))
-      request.onblocked = () => reject(new Error('La base IndexedDB attend la fermeture d’un autre onglet.'))
+      request.onerror = () => reject(request.error ?? new Error('IndexedDB is unavailable.'))
+      request.onblocked = () => reject(new Error('IndexedDB is waiting for another tab to close.'))
     })
     return databasePromise
   }

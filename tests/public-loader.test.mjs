@@ -19,7 +19,7 @@ test('fresh browsers must import a ZIP and valid OPFS installs skip the importer
   assert.match(html, /if \(staged\.ok\) \{[\s\S]*?stagedReady = true/)
   assert.match(html, /if \(!stagedReady && demo\?\.hasFile\('rom'\)\) return/)
   assert.match(html, /assets: \{ game: archive \}/)
-  assert.match(html, /Importe le ZIP de ta propre copie de Celeste/)
+  assert.match(html, /Import a ZIP of your own copy of Celeste/)
   assert.doesNotMatch(html, /showDirectoryPicker|pickGameDirectory|gameDirectory:/)
   assert.doesNotMatch(demo, /showDirectoryPicker|pickGameDirectory|gameDirectory/)
 })

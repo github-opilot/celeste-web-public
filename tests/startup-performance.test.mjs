@@ -44,6 +44,6 @@ test('public startup checks local OPFS before requiring a player ZIP', () => {
   assert.notEqual(importer, -1);
   assert.ok(check < importer);
   assert.match(html, /if \(staged\.ok\) \{[\s\S]*?stagedReady = true/);
-  assert.match(html, /Importe le ZIP de ta propre copie de Celeste/);
+  assert.match(html, /Import a ZIP of your own copy of Celeste/);
   assert.doesNotMatch(html, /installFromPrivateSource|PRIVATE_INSTALL_CONFIG|CELESTE_PRIVATE_ARCHIVE/);
 });

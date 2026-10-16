@@ -37,6 +37,15 @@ echo "[celeste] running 'make ${TARGET}' inside ${IMAGE}"
 docker run --rm \
   ${platform_args[@]+"${platform_args[@]}"} \
   -v "${PROJECT_DIR}:/workspace" \
+  -e GIT_CONFIG_COUNT=4 \
+  -e GIT_CONFIG_KEY_0=safe.directory \
+  -e GIT_CONFIG_VALUE_0=/workspace/.tmp/everest-src \
+  -e GIT_CONFIG_KEY_1=safe.directory \
+  -e 'GIT_CONFIG_VALUE_1=/workspace/.tmp/everest-src/*' \
+  -e GIT_CONFIG_KEY_2=safe.directory \
+  -e GIT_CONFIG_VALUE_2=/workspace/.tmp/celeste-loader-src \
+  -e GIT_CONFIG_KEY_3=safe.directory \
+  -e 'GIT_CONFIG_VALUE_3=/workspace/.tmp/celeste-loader-src/*' \
   -e UPSTREAM_REPO \
   -e UPSTREAM_REF \
   -e EVEREST_BUILD \

@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-  <title>Celeste — Au sommet</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Celeste — Reach the Summit</title>
   <!-- The strawberry, straight out of the Everest build — `build-everest` drops
        it beside everest.zip. Nothing here is checked in, so a dist/ that has not
        had `make build-everest` run over it serves no favicon rather than a
@@ -25,97 +25,140 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#launch-title">Skip to launcher</a>
   <header class="summit-bar">
-    <a class="brand" href="./" aria-label="Accueil Celeste">
-      <span class="brand-mark" aria-hidden="true">✦</span>
-      <span class="brand-copy"><strong>CELESTE</strong></span>
+    <a class="brand" href="./" aria-label="Celeste home">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 26 16 5l13 21H3Z"/><path d="m11 13 5 4 4-5"/></svg></span>
+      <span class="brand-copy"><strong>CELESTE</strong><small>WEB LAUNCHER</small></span>
     </a>
-    <span class="install-status" role="status" aria-live="polite"></span>
-    <nav class="header-actions" aria-label="Navigation principale">
-      <button type="button" class="nav-button" data-open-cloud>Cloud</button>
-      <button type="button" id="header-auth" class="login-button" data-open-login>Se connecter</button>
+    <span class="header-caption">A little closer to the summit.</span>
+    <nav class="header-actions" aria-label="Main navigation">
+      <button type="button" class="nav-button" data-open-cloud>Cloud saves</button>
+      <button type="button" id="header-auth" class="login-button" data-open-login>Sign in</button>
+      <!-- Keep account and launcher preferences together. -->
+      <button type="button" id="open-prefs" class="icon-button" title="Settings" aria-label="Open settings">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path
+            d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7.4-2.5a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3H9l-.3 2.6a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L4.6 11a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.8 1.7 1L9 21h6l.3-2.6c.6-.2 1.2-.6 1.7-1l2.4 1 2-3.4-2-1.6Z"
+          />
+        </svg>
+      </button>
     </nav>
-    <!-- Everything that acts on storage rather than on this session lives
-         behind this, so the bar keeps carrying only the one thing the player is
-         waiting on. -->
-    <button type="button" id="open-prefs" class="icon-button" title="Préférences" aria-label="Ouvrir les préférences">
-      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path
-          d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7.4-2.5a7.6 7.6 0 0 0 0-2l2-1.6-2-3.4-2.4 1a7.6 7.6 0 0 0-1.7-1L15 3H9l-.3 2.6a7.6 7.6 0 0 0-1.7 1l-2.4-1-2 3.4L4.6 11a7.6 7.6 0 0 0 0 2l-2 1.6 2 3.4 2.4-1c.5.4 1.1.8 1.7 1L9 21h6l.3-2.6c.6-.2 1.2-.6 1.7-1l2.4 1 2-3.4-2-1.6Z"
-        />
-      </svg>
-    </button>
   </header>
 
   <div class="page-shell">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <h1 id="hero-title">Prêt à jouer&nbsp;?</h1>
-        <p class="hero-description">Importe le ZIP de ta propre copie pour commencer.</p>
-        <p class="zip-help-line"><button type="button" class="zip-help-trigger" data-open-zip-tutorial>Comment obtenir mon ZIP ?</button></p>
+        <p class="eyebrow"><span aria-hidden="true">✦</span> THE MOUNTAIN IS CALLING</p>
+        <h1 id="hero-title">CELESTE <span>Take a deep breath.</span></h1>
+        <p class="hero-description">One more climb. One more try.<br>Your journey to the summit starts here.</p>
+      </div>
+      <div class="mountain-scene" aria-hidden="true">
+        <svg viewBox="0 0 760 540" fill="none" focusable="false">
+          <defs>
+            <linearGradient id="sky-glow" x1="380" y1="0" x2="380" y2="540" gradientUnits="userSpaceOnUse"><stop stop-color="#171f3e" stop-opacity="0"/><stop offset=".65" stop-color="#34355c"/><stop offset="1" stop-color="#11192e"/></linearGradient>
+            <linearGradient id="summit-face" x1="390" y1="130" x2="390" y2="510" gradientUnits="userSpaceOnUse"><stop stop-color="#7189b8"/><stop offset="1" stop-color="#263652"/></linearGradient>
+            <linearGradient id="snow" x1="340" y1="140" x2="480" y2="275" gradientUnits="userSpaceOnUse"><stop stop-color="#f0e5ed"/><stop offset="1" stop-color="#899ebf"/></linearGradient>
+          </defs>
+          <path fill="url(#sky-glow)" d="M0 0h760v540H0z"/>
+          <g fill="#bbcdeb" class="scene-stars">
+            <path d="M60 155h3v3h-3zM122 95h2v2h-2zM208 150h3v3h-3zM278 46h2v2h-2zM405 58h3v3h-3zM481 103h2v2h-2zM625 68h3v3h-3zM695 174h2v2h-2zM568 201h2v2h-2zM98 242h2v2h-2zM320 105h2v2h-2zM655 275h3v3h-3z"/>
+            <path d="M185 51v12m-6-6h12M522 42v10m-5-5h10M672 120v12m-6-6h12" stroke="#c9dbf5" stroke-width="2"/>
+          </g>
+          <circle cx="578" cy="123" r="34" fill="#dddce9"/>
+          <circle cx="590" cy="113" r="32" fill="#1d2746"/>
+          <path d="m0 358 90-112 69 77 88-136 103 146 91-113 100 109 77-105 142 151v165H0Z" fill="#2b3557"/>
+          <path d="m0 418 153-143 93 103L386 130l184 272 76-73 114 89v122H0Z" fill="url(#summit-face)"/>
+          <path d="m386 130 184 272-126-61-27-105Z" fill="#354766"/>
+          <path d="m386 130-79 140 46-21 22 16 22-41 47 26-27-14Z" fill="url(#snow)"/>
+          <path d="m386 130 11 94 47 26-27-14Z" fill="#a7b4d0"/>
+          <path d="m153 275-42 40 41-12 31 25Z" fill="#92a3bf"/>
+          <path d="m0 462 102-76 86 63 68-36 85 59 99-105 101 72 60-22 159 65v58H0Z" fill="#1b2b44"/>
+          <path d="m0 508 120-34 103 27 101-16 97 28 104-40 110 20 125-23v70H0Z" fill="#101c31"/>
+          <path d="m398 537 23-24-27-14 30-17-8-10 24-17" stroke="#78869e" stroke-opacity=".5" stroke-width="2" stroke-dasharray="4 7"/>
+          <g fill="#0c1527"><path d="m58 398-16 35h10l-16 32h16v35h12v-35h16l-16-32h10ZM105 436l-12 26h8l-12 24h12v25h9v-25h12l-13-24h8ZM665 393l-18 37h12l-19 36h19v37h13v-37h18l-19-36h12ZM709 445l-12 25h8l-13 24h13v26h9v-26h12l-12-24h8Z"/></g>
+          <g class="summit-flag"><path d="M386 132V108" stroke="#e7dfea" stroke-width="2"/><path d="m387 108 26 5-26 9Z" fill="#ff8190"/></g>
+          <g transform="translate(433 433)"><path d="M0 0h7v7H0z" fill="#f5c2b4"/><path d="M-2-3h9v5H-2zM-4 0h4v11h-4z" fill="#ff7d8d"/><path d="M-1 7h9v12H-1z" fill="#86cadd"/><path d="M0 19h3v8H0zM6 19h3v8H6z" fill="#acb9d3"/><path d="M7 8h17v4H7z" fill="#ff7d8d"/></g>
+        </svg>
+        <span class="scene-caption">CELESTE MOUNTAIN <span>↑ THE SUMMIT AWAITS</span></span>
       </div>
     </section>
 
-    <section class="play-layout" aria-label="Lancer Celeste">
-      <main aria-label="Installation et lancement de Celeste">
+    <section class="play-layout" aria-labelledby="launch-title">
+      <div class="launch-card">
+        <div class="launch-heading">
+          <p class="eyebrow">YOUR BASE CAMP</p>
+          <h2 id="launch-title" tabindex="-1">Ready for the climb?</h2>
+          <p>Bring your copy of Celeste.<br> We’ll take care of the trail.</p>
+        </div>
+        <div class="installation-summary">
+          <span class="status-orbit" aria-hidden="true"></span>
+          <div><h3>Game installation</h3><p class="install-status" role="status" aria-live="polite">Checking this device…</p></div>
+        </div>
+      <main aria-label="Install and launch Celeste">
         <div class="launcher-loading" role="status" aria-live="polite">
-          <p id="bootstrap-phase">Préparation du lanceur…</p>
+          <p id="bootstrap-phase">Preparing launcher…</p>
           <div
             id="bootstrap-progress"
             class="launcher-loading-bar busy"
             role="progressbar"
-            aria-label="Téléchargement et installation de Celeste"
+            aria-label="Loading the launcher"
             aria-busy="true"
           ><i id="bootstrap-progress-fill"></i></div>
           <p id="bootstrap-speed" class="launcher-speed" role="status" aria-live="polite" hidden></p>
           <p id="bootstrap-detail" class="launcher-loading-detail"></p>
         </div>
       </main>
-
+        <p class="zip-help-line"><button type="button" class="zip-help-trigger" data-open-zip-tutorial>Need help preparing your ZIP? <span aria-hidden="true">↗</span></button></p>
+        <p class="device-note"><span aria-hidden="true">◇</span> Your game files stay on this device.</p>
+      </div>
+      <div class="save-shortcuts" aria-label="Manage your progress">
+        <button type="button" data-open-cloud><span class="shortcut-icon" aria-hidden="true">☁</span><span><strong>A little peace of mind</strong><small>Keep your progress with cloud saves</small></span><span aria-hidden="true">↗</span></button>
+        <button type="button" data-open-settings><span class="shortcut-icon" aria-hidden="true">↓</span><span><strong>Your saves, your way</strong><small>Export or restore a local backup</small></span><span aria-hidden="true">↗</span></button>
+      </div>
     </section>
 
-    <footer class="page-footer">Ton jeu et tes sauvegardes restent sur cet appareil.</footer>
   </div>
 
   <dialog id="zip-tutorial" class="prefs zip-tutorial" aria-labelledby="zip-tutorial-title">
     <form method="dialog" class="prefs-head">
-      <div><span class="dialog-kicker">GUIDE D’INSTALLATION</span><h2 id="zip-tutorial-title">Préparer ton ZIP</h2></div>
-      <button type="submit" class="dialog-close" title="Fermer" aria-label="Fermer">×</button>
+      <div><span class="dialog-kicker">SETUP GUIDE</span><h2 id="zip-tutorial-title">Prepare your ZIP</h2></div>
+      <button type="submit" class="dialog-close" title="Close" aria-label="Close">×</button>
     </form>
     <section class="prefs-group">
-      <h3>Où trouver le dossier du jeu ?</h3>
-      <p><b>Steam sous Windows :</b> dans ta bibliothèque, clic droit sur Celeste → <i>Gérer</i> → <i>Parcourir les fichiers locaux</i>.</p>
-      <p><b>GOG Galaxy :</b> ouvre Celeste, puis le menu de gestion de l’installation et choisis l’option qui affiche le dossier du jeu. Depuis GOG hors Galaxy, utilise le dossier choisi lors de l’installation.</p>
-      <p><b>itch.io :</b> dans l’application itch, ouvre la page du jeu puis son menu de gestion pour afficher le dossier. Pour une installation téléchargée depuis le site itch.io, décompresse d’abord l’archive obtenue auprès d’itch.</p>
+      <h3>Where can I find the game folder?</h3>
+      <p><b>Steam on Windows:</b> open your library, right-click Celeste, then choose <i>Manage</i> → <i>Browse local files</i>.</p>
+      <p><b>GOG Galaxy:</b> open Celeste, then open the installation management menu and choose the option that shows the game folder. If you use GOG without Galaxy, use the folder you selected during installation.</p>
+      <p><b>itch.io:</b> in the itch app, open the game page and its management menu to show the folder. If you downloaded the installation from itch.io's website, first extract the archive you got from itch.</p>
     </section>
     <section class="prefs-group">
-      <h3>Créer et importer l’archive</h3>
+      <h3>Create and import the archive</h3>
       <ol>
-        <li>Repère le dossier complet de Celeste, avec son exécutable (<code>Celeste.exe</code> ou <code>Celeste.dll</code>) et le dossier <code>Content</code>.</li>
-        <li>Dans l’explorateur Windows, clic droit sur le dossier → <i>Compresser dans un fichier ZIP</i> ou <i>Envoyer vers → Dossier compressé</i>. Sur macOS, clic droit → <i>Compresser</i>.</li>
-        <li>Reviens sur cette page, choisis le fichier ZIP dans le cadre d’importation, puis clique sur <b>Jouer</b>. L’archive doit contenir les fichiers du jeu à sa racine, ou dans un unique dossier parent.</li>
+        <li>Find the complete Celeste folder. It must contain the game executable (<code>Celeste.exe</code> or <code>Celeste.dll</code>) and the <code>Content</code> folder.</li>
+        <li>In Windows File Explorer, right-click the folder and choose <i>Compress to ZIP file</i> or <i>Send to → Compressed folder</i>. On macOS, right-click and choose <i>Compress</i>.</li>
+        <li>Return to this page, choose the ZIP in the import area, then click <b>Play</b>. The archive must contain the game files at its root or inside a single parent folder.</li>
       </ol>
-      <p>Le site vérifie les fichiers indispensables et les installe dans le stockage privé de ce navigateur. L’archive et les fichiers commerciaux restent sur ton appareil : cette application ne les envoie ni à Supabase ni à un serveur de jeu.</p>
+      <p>The site checks for required files and installs them in this browser's private storage. The archive and commercial game files stay on your device: this app does not send them to Supabase or any game server.</p>
     </section>
     <section class="prefs-group">
-      <h3>Questions fréquentes</h3>
-      <details><summary>Pourquoi dois-je posséder Celeste ?</summary><p>Le site fournit le moteur WebAssembly, pas le jeu commercial. Utilise une copie que tu as le droit d’utiliser.</p></details>
-      <details><summary>Pourquoi le premier démarrage est-il long ?</summary><p>Le navigateur installe les nombreux fichiers du jeu dans son espace local, puis initialise le moteur WebAssembly. Les visites suivantes réutilisent l’installation.</p></details>
-      <details><summary>Où sont enregistrés les fichiers et ma progression ?</summary><p>L’installation et les sauvegardes locales restent dans le stockage privé du navigateur pour cette adresse web (OPFS). Les sauvegardes cloud sont optionnelles et ne contiennent que les données de sauvegarde exportées par le SDK.</p></details>
-      <details><summary>Comment retrouver mes sauvegardes ?</summary><p>Ouvre les Préférences pour exporter ou restaurer les sauvegardes locales, ou connecte-toi pour utiliser la synchronisation cloud configurée.</p></details>
-      <details><summary>Pourquoi dois-je réimporter le ZIP après avoir effacé les données du site ?</summary><p>Effacer les données du site supprime aussi l’installation et les sauvegardes locales. Il faut alors réimporter le ZIP et, si besoin, restaurer une sauvegarde cloud.</p></details>
+      <h3>Frequently asked questions</h3>
+      <details><summary>Why do I need to own Celeste?</summary><p>This site provides the WebAssembly engine, not the commercial game. Use a copy you are entitled to use.</p></details>
+      <details><summary>Why does the first launch take so long?</summary><p>Your browser installs the game's many files in local storage, then initializes the WebAssembly engine. Later visits reuse the installation.</p></details>
+      <details><summary>Where are the game files and my progress stored?</summary><p>The installation and local saves stay in this website's private browser storage (OPFS). Optional cloud saves contain only save data exported by the SDK.</p></details>
+      <details><summary>How can I access my saves?</summary><p>Open Settings to export or restore local saves, or sign in to use the configured cloud sync.</p></details>
+      <details><summary>Why do I need to import the ZIP again after clearing site data?</summary><p>Clearing site data also removes the installation and local saves. Import your ZIP again and, if needed, restore a cloud save.</p></details>
     </section>
   </dialog>
 
-  <button type="button" id="fullscreen-toggle" class="fullscreen-toggle" aria-label="Passer en plein écran" title="Plein écran">
+  <button type="button" id="fullscreen-toggle" class="fullscreen-toggle" aria-label="Enter full screen" title="Full screen">
     <svg class="fullscreen-enter" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5M4 4l6 6m10-6-6 6m6 10-6-6M4 20l6-6"/></svg>
     <svg class="fullscreen-exit" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 4v5H4m11-5v5h5M4 15h5v5m11-5h-5v5"/></svg>
   </button>
 
-  <dialog id="prefs" class="prefs">
+  <dialog id="prefs" class="prefs" aria-labelledby="prefs-title" aria-describedby="prefs-description">
     <form method="dialog" class="prefs-head">
-      <div><span class="dialog-kicker">SUR CET APPAREIL</span><h2>Préférences</h2></div>
-      <button type="submit" class="dialog-close" title="Fermer" aria-label="Fermer">
+      <div><span class="dialog-kicker">MAKE YOURSELF AT HOME</span><h2 id="prefs-title">Settings</h2><p id="prefs-description" class="dialog-lead">Your progress, wherever the climb takes you.</p></div>
+      <button type="submit" class="dialog-close" title="Close" aria-label="Close">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6 6.4 5Z" />
         </svg>
@@ -123,131 +166,65 @@
     </form>
 
     <section id="cloud-preferences" class="prefs-group cloud-preferences">
-      <h3>Sauvegardes cloud</h3>
-      <p id="cloud-auth-state" role="status" aria-live="polite">Vérification de la connexion…</p>
+      <div class="category-heading"><h3><span aria-hidden="true">01</span> Cloud saves</h3><span class="category-tag">ACROSS DEVICES</span></div>
+      <p id="cloud-auth-state" role="status" aria-live="polite">Checking sign-in…</p>
       <div class="prefs-actions">
-        <button type="button" id="cloud-sign-in">Se connecter avec GitHub</button>
-        <button type="button" id="cloud-classic-auth">Pseudo et mot de passe</button>
-        <button type="button" id="cloud-sign-out" hidden>Se déconnecter</button>
+        <button type="button" id="cloud-sign-in">Sign in with GitHub</button>
+        <button type="button" id="cloud-sign-out" hidden>Sign out</button>
       </div>
-      <p id="cloud-last-sync">Dernière synchronisation : aucune.</p>
-      <label class="cloud-version-label" for="cloud-version-select">Version à restaurer</label>
-      <select id="cloud-version-select" aria-label="Version de sauvegarde cloud">
-        <option value="">Aucune version disponible</option>
+      <p id="cloud-last-sync">Last synced: never.</p>
+      <label class="cloud-version-label" for="cloud-version-select">Version to restore</label>
+      <select id="cloud-version-select" aria-label="Cloud save version" disabled>
+        <option value="">No versions available</option>
       </select>
       <div class="prefs-actions">
-        <button type="button" id="cloud-save-now" disabled>Sauvegarder maintenant</button>
-        <button type="button" id="cloud-restore" disabled>Restaurer ma progression</button>
-        <button type="button" id="cloud-safety-download" hidden>Télécharger la copie de sécurité</button>
+        <button type="button" id="cloud-save-now" disabled>Save now</button>
+        <button type="button" id="cloud-restore" disabled>Restore my progress</button>
+        <button type="button" id="cloud-safety-download" hidden>Download safety backup</button>
       </div>
-      <p id="cloud-sync-indicator" class="cloud-sync-indicator" role="status" aria-live="polite">Synchronisation inactive.</p>
+      <p id="cloud-sync-indicator" class="cloud-sync-indicator" role="status" aria-live="polite">Sync is inactive.</p>
       <p id="cloud-status" class="cloud-status" role="status" aria-live="polite"></p>
     </section>
 
     <section class="prefs-group">
-      <h3>Sauvegardes locales</h3>
-      <p>Ta progression reste dans ce navigateur. Exporte-la pour en garder une copie ou restaure une archive existante.</p>
+      <div class="category-heading"><h3><span aria-hidden="true">02</span> Local saves</h3><span class="category-tag">ON THIS DEVICE</span></div>
+      <p>Your progress stays in this browser. Export a copy or restore an existing archive.</p>
       <div class="prefs-actions">
-        <button type="button" id="export-saves">Exporter mes sauvegardes</button>
-        <button type="button" id="import-saves">Restaurer une archive…</button>
-        <button type="button" id="local-safety-download" hidden>Télécharger la copie de sécurité</button>
+        <button type="button" id="export-saves">Export my saves</button>
+        <button type="button" id="import-saves">Restore an archive…</button>
+        <button type="button" id="local-safety-download" hidden>Download safety backup</button>
       </div>
       <input type="file" id="saves-file" accept=".tar,.tar.gz,.tgz,.gz" hidden />
     </section>
 
-    <section class="prefs-group">
-      <h3>Stockage du jeu</h3>
-      <p>Supprime la copie installée de Celeste <b>et tes sauvegardes</b>. Cette action est irréversible et le prochain démarrage recopiera le jeu.</p>
+    <section class="prefs-group danger-zone">
+      <div class="category-heading"><h3><span aria-hidden="true">!</span> Game storage</h3><span class="category-tag">DESTRUCTIVE ACTION</span></div>
+      <p>Remove the installed copy of Celeste <b>and your saves</b>. Export your saves first. You’ll need to import your game again after deleting it.</p>
       <div class="prefs-actions">
-        <button type="button" id="purge-storage" class="danger">Tout supprimer du stockage</button>
+        <button type="button" id="purge-storage" class="danger">Delete everything from storage</button>
       </div>
     </section>
 
-    <p class="prefs-status" role="status"></p>
+    <p class="prefs-status" role="status" aria-live="polite" aria-atomic="true"></p>
   </dialog>
 
   <dialog id="auth-dialog" class="prefs auth-dialog" aria-labelledby="auth-title">
     <form method="dialog" class="prefs-head">
-      <div><span class="dialog-kicker">COMPTE CELESTE</span><h2 id="auth-title">Connexion</h2></div>
-      <button type="submit" class="dialog-close" title="Fermer" aria-label="Fermer">
+      <div><span class="dialog-kicker">CELESTE ACCOUNT</span><h2 id="auth-title">Sign in</h2></div>
+      <button type="submit" class="dialog-close" title="Close" aria-label="Close">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12 19 6.4 17.6 5 12 10.6 6.4 5Z" /></svg>
       </button>
     </form>
 
-    <div id="auth-tabs" class="auth-tabs" role="tablist" aria-label="Compte">
-      <button id="auth-tab-login" type="button" class="dialog-secondary" role="tab">Se connecter</button>
-      <button id="auth-tab-register" type="button" class="dialog-secondary" role="tab">Créer un compte</button>
+    <div id="auth-github-view" class="auth-form">
+      <p class="dialog-lead">Sign in with GitHub to sync your saves across devices.</p>
+      <button type="button" id="auth-github" class="dialog-secondary">Continue with GitHub</button>
     </div>
-
-    <form id="username-login-form" class="auth-form">
-      <p class="dialog-lead">Retrouve tes sauvegardes avec ton pseudo.</p>
-      <label class="form-field">Pseudo
-        <input id="login-username" name="username" autocomplete="username" minlength="3" maxlength="20" required />
-      </label>
-      <label class="form-field">Mot de passe
-        <input id="login-password" name="password" type="password" autocomplete="current-password" required />
-      </label>
-      <button type="submit" class="dialog-primary">Se connecter</button>
-      <button type="button" id="forgot-password-open" class="auth-text-button">Mot de passe oublié ?</button>
-      <div class="auth-divider"><span>ou</span></div>
-      <button type="button" id="auth-github" class="dialog-secondary">Continuer avec GitHub</button>
-    </form>
-
-    <form id="username-register-form" class="auth-form" hidden>
-      <p class="dialog-lead">Crée un compte pour retrouver ta progression sur tes appareils.</p>
-      <label class="form-field">Pseudo unique
-        <input id="register-username" name="username" autocomplete="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" required />
-      </label>
-      <label class="form-field">E-mail de récupération
-        <input id="register-email" name="email" type="email" autocomplete="email" required />
-      </label>
-      <label class="form-field">Mot de passe
-        <input id="register-password" name="new-password" type="password" autocomplete="new-password" minlength="12" required />
-      </label>
-      <label class="form-field">Confirmer le mot de passe
-        <input id="register-password-confirm" name="new-password-confirm" type="password" autocomplete="new-password" minlength="12" required />
-      </label>
-      <button type="submit" class="dialog-primary">Créer mon compte</button>
-      <p class="dialog-note">Un e-mail de confirmation peut être nécessaire avant la première connexion.</p>
-    </form>
-
-    <form id="password-recovery-request" class="auth-form" hidden>
-      <p class="dialog-lead">Saisis l’adresse de récupération associée au compte.</p>
-      <label class="form-field">Adresse e-mail
-        <input id="recovery-email" name="email" type="email" autocomplete="email" required />
-      </label>
-      <button type="submit" class="dialog-primary">Envoyer le lien</button>
-      <button type="button" id="recovery-back" class="auth-text-button">Retour à la connexion</button>
-    </form>
-
-    <form id="password-recovery-complete" class="auth-form" hidden>
-      <p class="dialog-lead">Choisis un nouveau mot de passe pour ton compte.</p>
-      <label class="form-field">Nouveau mot de passe
-        <input id="recovery-password" name="new-password" type="password" autocomplete="new-password" minlength="12" required />
-      </label>
-      <label class="form-field">Confirmer le mot de passe
-        <input id="recovery-password-confirm" name="new-password-confirm" type="password" autocomplete="new-password" minlength="12" required />
-      </label>
-      <button type="submit" class="dialog-primary">Mettre à jour le mot de passe</button>
-    </form>
 
     <section id="auth-current-account" class="auth-form" hidden>
       <p id="auth-current-account-name" class="dialog-lead"></p>
-      <p id="auth-link-account-note" class="dialog-note"></p>
-      <form id="auth-link-account-form" class="auth-form">
-        <label class="form-field">Pseudo unique
-          <input id="account-link-username" name="username" autocomplete="username" minlength="3" maxlength="20" pattern="[A-Za-z0-9_]{3,20}" required />
-        </label>
-        <div id="account-link-password-fields">
-          <label class="form-field">Nouveau mot de passe
-            <input id="account-link-password" name="new-password" type="password" autocomplete="new-password" minlength="12" required />
-          </label>
-          <label class="form-field">Confirmer le mot de passe
-            <input id="account-link-password-confirm" name="new-password-confirm" type="password" autocomplete="new-password" minlength="12" required />
-          </label>
-        </div>
-        <button type="submit" class="dialog-primary">Enregistrer sur ce compte</button>
-      </form>
+      <p class="dialog-note">Your cloud saves are linked to this GitHub account.</p>
+      <button type="button" id="auth-sign-out" class="dialog-secondary">Sign out</button>
     </section>
 
     <p id="auth-status" class="auth-status" role="status" aria-live="polite"></p>
@@ -273,17 +250,12 @@
     })
 
     import {
-      linkUsernameAndPassword,
-      registerWithUsername,
-      sendPasswordRecovery,
-      signInWithUsername,
-    } from './classic-auth.js'
-    import {
       CloudSaveService,
       createBrowserCloudSaveRepository,
       createOAuthRedirectUrl,
       createSupabaseClient,
         inspectSaveArchive,
+      isGitHubUser,
       signInWithGitHub,
       signOutFromSupabase,
       supabaseConfigured,
@@ -309,17 +281,16 @@
         )
       : null
     let cloudUser = null
-    let cloudProfileUsername = null
     let cloudVersions = []
     let cloudBusy = false
 
     // Check OPFS before rendering the shared ZIP importer so an existing
-    // installation can go straight to Jouer without flashing the picker.
+    // installation can go straight to Play without flashing the picker.
     let demo
     const appStartedAt = performance.now()
     const startupMeasurements = Object.create(null)
     const mainEl = document.querySelector('main')
-    const statusEl = document.querySelector('.summit-bar .install-status')
+    const statusEl = document.querySelector('.installation-summary .install-status')
     const openCloudPreferences = () => {
       const preferences = document.getElementById('prefs')
       if (preferences && !preferences.open) preferences.showModal()
@@ -328,7 +299,7 @@
     const openAuthDialog = () => {
       const dialog = document.getElementById('auth-dialog')
       if (dialog && !dialog.open) dialog.showModal()
-      showAuthView(cloudUser ? 'account' : 'login')
+      showAuthView()
     }
     document.querySelectorAll('[data-open-login]').forEach((button) => button.addEventListener('click', openAuthDialog))
     document.querySelectorAll('[data-open-cloud]').forEach((button) => button.addEventListener('click', openCloudPreferences))
@@ -352,8 +323,8 @@
     const fullscreenButton = document.getElementById('fullscreen-toggle')
     const updateFullscreenButton = () => {
       const active = document.fullscreenElement === document.documentElement
-      fullscreenButton.setAttribute('aria-label', active ? 'Quitter le plein écran' : 'Passer en plein écran')
-      fullscreenButton.title = active ? 'Quitter le plein écran' : 'Plein écran'
+      fullscreenButton.setAttribute('aria-label', active ? 'Exit full screen' : 'Enter full screen')
+      fullscreenButton.title = active ? 'Exit full screen' : 'Full screen'
       fullscreenButton.classList.toggle('active', active)
     }
     fullscreenButton.addEventListener('click', () => {
@@ -365,6 +336,7 @@
     const setStatus = (text, bad = false) => {
       statusEl.textContent = text
       statusEl.classList.toggle('bad', bad)
+      statusEl.closest('.installation-summary').classList.toggle('bad', bad)
     }
 
     const bootstrapPhase = document.getElementById('bootstrap-phase')
@@ -372,20 +344,20 @@
     const bootstrapFill = document.getElementById('bootstrap-progress-fill')
     const bootstrapSpeed = document.getElementById('bootstrap-speed')
     const bootstrapDetail = document.getElementById('bootstrap-detail')
-    const formatMiB = (bytes) => `${(bytes / (1024 * 1024)).toFixed(1)} Mo`
+    const formatMiB = (bytes) => `${(bytes / (1024 * 1024)).toFixed(1)} MB`
     const formatSpeed = (bytesPerSecond) => {
       if (bytesPerSecond >= 1024 * 1024) {
-        return `${(bytesPerSecond / (1024 * 1024)).toFixed(1)} Mo/s`
+        return `${(bytesPerSecond / (1024 * 1024)).toFixed(1)} MB/s`
       }
       const kilobytesPerSecond = bytesPerSecond / 1024
-      return `${kilobytesPerSecond < 100 ? kilobytesPerSecond.toFixed(1) : Math.round(kilobytesPerSecond)} ko/s`
+      return `${kilobytesPerSecond < 100 ? kilobytesPerSecond.toFixed(1) : Math.round(kilobytesPerSecond)} KB/s`
     }
     const formatEta = (seconds) => {
       if (seconds == null || !Number.isFinite(seconds)) return ''
-      if (seconds < 60) return `~${seconds}s restantes`
+      if (seconds < 60) return `~${seconds}s remaining`
       const minutes = Math.ceil(seconds / 60)
-      if (minutes < 60) return `~${minutes} min restantes`
-      return `~${Math.floor(minutes / 60)} h ${minutes % 60} min restantes`
+      if (minutes < 60) return `~${minutes} min remaining`
+      return `~${Math.floor(minutes / 60)} h ${minutes % 60} min remaining`
     }
     const showBootstrapProgress = (phase, loaded = 0, total = null, detail = '') => {
       if (bootstrapPhase) bootstrapPhase.textContent = phase
@@ -434,11 +406,11 @@
     const createStageHud = (stageEl) => {
       const make = (tag, props) => Object.assign(document.createElement(tag), props)
 
-      const phaseEl = make('p', { className: 'hud-phase', textContent: 'Démarrage de Celeste…' })
+      const phaseEl = make('p', { className: 'hud-phase', textContent: 'Starting Celeste…' })
       const fillEl = make('i', {})
       const barEl = make('div', { className: 'hud-bar busy' })
       barEl.setAttribute('role', 'progressbar')
-      barEl.setAttribute('aria-label', 'Progression du chargement de Celeste')
+      barEl.setAttribute('aria-label', 'Celeste loading progress')
       barEl.setAttribute('aria-busy', 'true')
       const detailEl = make('p', { className: 'hud-detail', textContent: '' })
       barEl.append(fillEl)
@@ -461,7 +433,7 @@
           barEl.setAttribute('aria-valuemin', '0')
           barEl.setAttribute('aria-valuemax', '100')
           barEl.setAttribute('aria-valuenow', String(percent))
-          barEl.setAttribute('aria-valuetext', `${percent} %, ${current} sur ${total}`)
+          barEl.setAttribute('aria-valuetext', `${percent}%, ${current} of ${total}`)
           fillEl.style.width = `${Math.max(0, Math.min(1, current / total)) * 100}%`
         },
         /** Indeterminate: the long steps report messages, not percentages. */
@@ -501,11 +473,11 @@
     // just before the game reads its settings and picks the resolution there.
     let engineLoadStarted = false
     const boot = async (stageEl, { assets, fileName } = {}) => {
-      if (engineLoadStarted) throw new Error('Celeste a déjà commencé à démarrer sur cette page. Recharge la page pour réessayer.')
+      if (engineLoadStarted) throw new Error('Celeste has already started on this page. Reload the page to try again.')
       engineLoadStarted = true
       mainEl.classList.add('running')
       stageEl.replaceChildren()
-      setStatus('Préparation de Celeste…')
+      setStatus('Preparing Celeste…')
 
       const hud = createStageHud(stageEl)
       const gameStartupStartedAt = performance.now()
@@ -527,15 +499,15 @@
           },
           onProgress(current, total) {
             if (total <= 0) return
-            setStatus(`Copie de Celeste… ${Math.round((current / total) * 100)}%`)
+            setStatus(`Copying Celeste… ${Math.round((current / total) * 100)}%`)
             if (current < total) {
-              hud.progress('Copie de ton installation…', current, total, `${current} fichier(s) sur ${total}`)
+              hud.progress('Copying your installation…', current, total, `${current} file(s) of ${total}`)
             } else {
               // Staging is over; what follows is the runtime download and
               // MonoMod, neither of which reports a fraction.
               hud.busy(
-                'Préparation du jeu…',
-                'Téléchargement du runtime et adaptation de ton installation. Le premier démarrage peut prendre quelques minutes.',
+                'Preparing the game…',
+                'Loading the runtime and adapting your installation. The first launch may take a few minutes.',
               )
             }
           },
@@ -545,22 +517,22 @@
               return
             }
             if (event.state === 'skipped') {
-              startupMeasurements[event.phase] = 'réutilisé / ignoré'
+              startupMeasurements[event.phase] = 'reused / skipped'
               return
             }
             if (event.state !== 'start') return
 
             const phases = {
-              'game-staging': ['Préparation des fichiers…', 'Copie de l’installation vers OPFS.'],
-              'everest-archive': ['Préparation d’Everest…', 'Vérification de son archive locale.'],
-              'wasm-runtime': ['Initialisation WebAssembly…', 'Chargement et compilation du runtime.'],
-              'dotnet-startup': ['Démarrage du chargeur .NET…', 'Montage du stockage et préparation du jeu.'],
-              'everest-extraction': ['Extraction d’Everest…', 'Installation des fichiers du chargeur de mods.'],
-              'monomod-patch': ['Application des patchs MonoMod…', 'La première adaptation peut prendre quelques minutes.'],
-              'game-init': ['Initialisation de Celeste…', 'Chargement du moteur et de ses ressources.'],
-              'first-frames': ['Préparation de l’affichage…', 'Le jeu prépare ses premières images.'],
+              'game-staging': ['Preparing files…', 'Copying the installation to OPFS.'],
+              'everest-archive': ['Preparing Everest…', 'Checking its local archive.'],
+              'wasm-runtime': ['Initializing WebAssembly…', 'Loading and compiling the runtime.'],
+              'dotnet-startup': ['Starting the .NET loader…', 'Mounting storage and preparing the game.'],
+              'everest-extraction': ['Extracting Everest…', 'Installing mod loader files.'],
+              'monomod-patch': ['Applying MonoMod patches…', 'The initial patching may take a few minutes.'],
+              'game-init': ['Initializing Celeste…', 'Loading the engine and its resources.'],
+              'first-frames': ['Preparing the display…', 'The game is preparing its first frames.'],
             }
-            const [label, detail] = phases[event.phase] ?? ['Démarrage de Celeste…', '']
+            const [label, detail] = phases[event.phase] ?? ['Starting Celeste…', '']
             setStatus(label)
             hud.busy(label, detail)
           },
@@ -574,9 +546,9 @@
             setStatus(message)
 
             if (progress && progress.total > 0 && !progress.done) {
-              hud.progress('Chargement des mods…', progress.loaded, progress.total, progress.mod ?? '')
+              hud.progress('Loading mods…', progress.loaded, progress.total, progress.mod ?? '')
             } else {
-              hud.busy(message, 'Everest démarre le jeu.')
+              hud.busy(message, 'Everest is starting the game.')
             }
           },
           onEvent(event) {
@@ -592,7 +564,7 @@
               syncLaunchButton()
               requestAnimationFrame(() => requestAnimationFrame(() => {
                 const gameStartupMs = performance.now() - gameStartupStartedAt
-                startupMeasurements['first playable from Jouer'] = Math.round(gameStartupMs)
+                startupMeasurements['first playable from Play'] = Math.round(gameStartupMs)
                 startupMeasurements['total actif jusqu’au jouable'] = Math.round(bootstrapDurationMs + gameStartupMs)
                 console.info('[celeste/perf] first playable display', {
                   pageElapsedMs: Math.round(performance.now() - appStartedAt),
@@ -614,7 +586,7 @@
             // below with Start live again, which is the view the player left.
             if (event.type === 'exit') {
               mainEl.classList.remove('running')
-              showOnStage(stageEl, 'Celeste a quitté — retour au lancement…')
+              showOnStage(stageEl, 'Celeste has exited — returning to the launcher…')
               if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {})
               // Twice, because once would not do it: a rAF callback runs
               // *before* the paint it was scheduled for, so reloading from the
@@ -625,20 +597,20 @@
               // cold cache that is long enough to look like nothing happened.
               const finishExit = async () => {
                 if (cloudSaveService && cloudUser) {
-                  setCloudSyncIndicator('Capture des sauvegardes stables…', true)
+                  setCloudSyncIndicator('Capturing stable saves…', true)
                   try {
                     await cloudSaveService.queueStableAfterGameExit(cloudUser.id)
-                    setCloudSyncIndicator('Copie locale prête ; synchronisation en cours…', true)
+                    setCloudSyncIndicator('Local copy ready; syncing…', true)
                     const timeout = new Promise((resolve) => setTimeout(() => resolve({ status: 'queued' }), 7000))
                     const result = await Promise.race([cloudSaveService.flushPending(cloudUser.id), timeout])
                     if (result.status === 'saved') {
-                      setCloudSyncIndicator(`Synchronisé le ${new Date().toLocaleTimeString('fr-FR')}.`)
+                      setCloudSyncIndicator(`Synced at ${new Date().toLocaleTimeString('en-US')}.`)
                     } else {
-                      setCloudSyncIndicator('Copie conservée sur cet appareil ; synchronisation à reprendre.')
+                      setCloudSyncIndicator('Copy kept on this device; sync will resume later.')
                     }
                   } catch (error) {
-                    setCloudSyncIndicator('La copie locale est conservée ; synchronisation à reprendre.')
-                    setCloudMessage(`Synchronisation automatique : ${error.message}`, true)
+                    setCloudSyncIndicator('The local copy is safe; sync will resume later.')
+                    setCloudMessage(`Automatic sync: ${error.message}`, true)
                   }
                 }
                 requestAnimationFrame(() => requestAnimationFrame(() => location.reload()))
@@ -667,18 +639,22 @@
 
     // --- local installation and launch ------------------------------------
     let stagedReady = false
-    const STAGED_MESSAGE = 'Installation Celeste trouvée dans ce navigateur — appuie sur Jouer.'
+    const STAGED_MESSAGE = 'A Celeste installation was found in this browser — press Play.'
 
     // Keep a validated OPFS install and a newly selected ZIP mutually exclusive.
     const syncLaunchButton = () => {
       const dropGrid = mainEl.querySelector('.drop-grid')
       const launcherStatus = mainEl.querySelector('.launcher .status')
       if (dropGrid) dropGrid.hidden = stagedReady
-      if (stagedReady && launcherStatus && launcherStatus.textContent !== 'Installation locale prête.') {
-        launcherStatus.textContent = 'Installation locale prête.'
+      document.querySelector('.installation-summary').classList.toggle('ready', stagedReady)
+      if (stagedReady && launcherStatus && launcherStatus.textContent !== 'Local installation ready.') {
+        launcherStatus.textContent = 'Local installation ready.'
       }
+      const fileInput = mainEl.querySelector('.picker input[type="file"]')
+      if (fileInput && !fileInput.hasAttribute('aria-label')) fileInput.setAttribute('aria-label', 'Choose a Celeste ZIP archive')
       const launchButton = mainEl.querySelector('.launch-btn')
       if (launchButton) launchButton.disabled = !(stagedReady || demo?.hasFile('rom'))
+      if (stagedReady && mainEl.querySelector('.launcher')) setStatus(STAGED_MESSAGE)
     }
     const launchObserver = new MutationObserver(syncLaunchButton)
     launchObserver.observe(mainEl, { childList: true, subtree: true })
@@ -688,7 +664,7 @@
       const stage = Object.assign(document.createElement('div'), { className: 'runtime' })
       mainEl.replaceChildren(stage)
       try {
-        await boot(stage, { fileName: 'Celeste (stockage local)' })
+        await boot(stage, { fileName: 'Celeste (local storage)' })
       } catch (err) {
         console.error(err)
         setStatus(err.message, true)
@@ -699,7 +675,7 @@
     // The launcher's own Start button, made to mean something.
     //
     // A valid OPFS install takes priority over a selected ZIP. The launcher
-    // renders into the light DOM, so a capture-phase listener can route Jouer.
+    // renders into the light DOM, so a capture-phase listener can route Play.
     mainEl.addEventListener(
       'click',
       (event) => {
@@ -712,7 +688,7 @@
         if (stagedReady) {
           void startGame()
         } else {
-          setStatus('Importe le ZIP de ta propre copie de Celeste pour commencer.', true)
+          setStatus('Import a ZIP of your own copy of Celeste to get started.', true)
         }
       },
       true,
@@ -725,18 +701,18 @@
       const staged = await stagedInstall()
       if (staged.ok) {
         stagedReady = true
-        setStatus(STAGED_MESSAGE)
-        showBootstrapProgress('Installation locale prête.', 1, 1, 'Aucun nouvel import nécessaire.')
+        setStatus('Celeste is ready — preparing the launcher…')
+        showBootstrapProgress('Preparing the launcher…', 0, null, 'Your local installation is ready.')
       } else {
         const details = staged.executable
-          ? `Fichiers manquants : ${staged.missing.join(', ')}.`
-          : 'Aucune installation valide dans le stockage de ce navigateur.'
-        setStatus(`${details} Importe le ZIP de ta propre copie de Celeste.`)
-        showBootstrapProgress('Importe ta copie de Celeste.', 0, null, details)
+          ? `Missing files: ${staged.missing.join(', ')}.`
+          : "No valid installation in this browser's storage."
+        setStatus(`${details} Import a ZIP of your own copy of Celeste.`)
+        showBootstrapProgress('Import your copy of Celeste.', 0, null, details)
       }
     } catch (err) {
-      setStatus(`Impossible de vérifier le stockage local : ${err.message}. Importe ton ZIP pour réparer l’installation.`, true)
-      showBootstrapProgress('Vérification du stockage local impossible.', 0, null, err.message)
+      setStatus(`Could not check local storage: ${err.message}. Import your ZIP to repair the installation.`, true)
+      showBootstrapProgress('Could not check local storage.', 0, null, err.message)
     }
     const bootstrapDurationMs = performance.now() - bootstrapStartedAt
     startupMeasurements['OPFS install check'] = Math.round(bootstrapDurationMs)
@@ -748,19 +724,19 @@
       .init({
         manifest,
         messages: {
-          title: 'Celeste — Au sommet',
-          dropRomPrompt: 'Importe ta copie de Celeste',
-          romAssetHint: 'Archive ZIP de ton installation — les fichiers restent sur ton appareil.',
-          launchButton: 'Jouer',
-          statusSelectRom: 'Importe ta copie du jeu pour commencer.',
-          statusReady: 'Prêt à jouer',
-          launchingStatus: 'Lancement de',
-          pickRomButton: 'Choisir une archive ZIP',
-          changeFileButton: 'Changer de fichier',
-          removeFileButton: 'Retirer',
-          selectedPrefix: 'Archive sélectionnée : ',
+          title: 'Celeste — Reach the Summit',
+          dropRomPrompt: 'Import your copy of Celeste',
+          romAssetHint: 'ZIP archive of your installation — files stay on your device.',
+          launchButton: 'Play',
+          statusSelectRom: 'Import your copy of the game to get started.',
+          statusReady: 'Ready to play',
+          launchingStatus: 'Launching',
+          pickRomButton: 'Choose a ZIP archive',
+          changeFileButton: 'Change file',
+          removeFileButton: 'Remove',
+          selectedPrefix: 'Selected archive: ',
           versionPrefix: 'Version ',
-          assetKeyPrefix: 'Ressource : ',
+          assetKeyPrefix: 'Asset: ',
         },
         bios: false,
         // Escape is Celeste's pause key, and the game's own menu is the real
@@ -774,18 +750,21 @@
         if (!file) return
         try {
           const check = await checkArchive(file)
-          setStatus(check.ok ? 'Celeste est prêt — appuie sur Jouer.' : check.reason, !check.ok)
+          setStatus(check.ok ? 'Celeste is ready — press Play.' : check.reason, !check.ok)
         } catch (err) {
-          setStatus(`Cette archive ZIP est illisible : ${err.message}`, true)
+          setStatus(`This ZIP archive cannot be read: ${err.message}`, true)
         }
       })
-      .on('remove:rom', syncLaunchButton)
+      .on('remove:rom', () => {
+        syncLaunchButton()
+        if (!stagedReady) setStatus('Import a ZIP of your own copy of Celeste to get started.')
+      })
       // The archive route validates the selected ZIP before the SDK stages it.
       .on('launch', async (e) => {
         // The launcher has already cleared the stage for a game that has not
         // started, so everything between here and boot()'s own HUD is a black
         // rectangle. Short as that is now, it is the player's only clue.
-        showOnStage(e.attachTo, 'Lecture de ton archive…')
+        showOnStage(e.attachTo, 'Reading your archive…')
 
         // Read the selected File as a Blob so the SDK can stream it instead
         // of first copying a multi-gigabyte archive into one ArrayBuffer.
@@ -797,7 +776,7 @@
         // same blob to its worker by reference instead of copying it across.
         const archive = demo.getFile('rom')
         if (!archive) {
-          const reason = 'Aucune archive sélectionnée — importe d’abord ton installation de Celeste.'
+          const reason = 'No archive selected — import your Celeste installation first.'
           setStatus(reason, true)
           showOnStage(e.attachTo, reason)
           throw new Error(reason)
@@ -840,6 +819,24 @@
       prefs.showModal()
     })
 
+    // Keep the keyboard path inside the modal, including after the last action.
+    // Chromium otherwise inserts a focus stop on the document before wrapping.
+    prefs.addEventListener('keydown', (event) => {
+      if (event.key !== 'Tab') return
+      const controls = [...prefs.querySelectorAll('button:not([disabled]):not([hidden]), select:not([disabled]):not([hidden])')]
+        .filter((control) => control.getClientRects().length > 0)
+      if (!controls.length) return
+      const first = controls[0]
+      const last = controls[controls.length - 1]
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault()
+        last.focus()
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault()
+        first.focus()
+      }
+    })
+
     // --- carrying the saves off the machine ---------------------------------
     //
     // OPFS is per browser and per origin, so progress made here is stranded
@@ -869,112 +866,61 @@
     const cloudSafetyButton = document.getElementById('cloud-safety-download')
     const localSafetyButton = document.getElementById('local-safety-download')
     const headerAuthButton = document.getElementById('header-auth')
-    const cloudClassicAuthButton = document.getElementById('cloud-classic-auth')
     const authDialog = document.getElementById('auth-dialog')
     const authTitle = document.getElementById('auth-title')
-    const authTabs = document.getElementById('auth-tabs')
     const authStatus = document.getElementById('auth-status')
-    const authLoginForm = document.getElementById('username-login-form')
-    const authRegisterForm = document.getElementById('username-register-form')
-    const authRecoveryRequest = document.getElementById('password-recovery-request')
-    const authRecoveryComplete = document.getElementById('password-recovery-complete')
+    const authGitHubView = document.getElementById('auth-github-view')
     const authCurrentAccount = document.getElementById('auth-current-account')
-    const authLinkForm = document.getElementById('auth-link-account-form')
     const authGitHubButton = document.getElementById('auth-github')
-    let passwordRecoveryActive = false
-    let authView = 'login'
+    const authSignOut = document.getElementById('auth-sign-out')
 
     const setAuthStatus = (message, bad = false) => {
       authStatus.textContent = message
       authStatus.classList.toggle('bad', bad)
     }
 
-    const showAuthView = (requestedView) => {
-      let view = requestedView
-      if (cloudUser && (view === 'login' || view === 'register')) view = 'account'
-      authView = view
-      const forms = {
-        login: authLoginForm,
-        register: authRegisterForm,
-        recoveryRequest: authRecoveryRequest,
-        recoveryComplete: authRecoveryComplete,
-        account: authCurrentAccount,
-      }
-      for (const [name, form] of Object.entries(forms)) form.hidden = name !== view
-      authTabs.hidden = Boolean(cloudUser) || view === 'recoveryRequest' || view === 'recoveryComplete'
-      document.getElementById('auth-tab-login').setAttribute('aria-selected', String(view === 'login'))
-      document.getElementById('auth-tab-register').setAttribute('aria-selected', String(view === 'register'))
-      authTitle.textContent = view === 'register'
-        ? 'Créer un compte'
-        : view.startsWith('recovery')
-          ? 'Récupérer le compte'
-          : cloudUser
-            ? 'Mon compte'
-            : 'Connexion'
-      if (view === 'account') renderCurrentAccountDetails()
+    const showAuthView = () => {
+      const signedIn = Boolean(cloudUser)
+      authGitHubView.hidden = signedIn
+      authCurrentAccount.hidden = !signedIn
+      authTitle.textContent = signedIn ? 'My account' : 'Sign in with GitHub'
+      if (signedIn) renderCurrentAccountDetails()
     }
 
     const renderCurrentAccountDetails = () => {
       if (!cloudUser) return
-      const providers = cloudUser.app_metadata?.providers ?? []
-      const hasPassword = providers.includes('email') || cloudUser.identities?.some((identity) => identity.provider === 'email')
-      const name = cloudProfileUsername ? `Connecté sous @${cloudProfileUsername}.` : 'Compte connecté. Choisis un pseudo pour activer cette méthode de connexion.'
+      const name = cloudUser.user_metadata?.user_name
+        ?? cloudUser.user_metadata?.preferred_username
+        ?? cloudUser.user_metadata?.name
       document.getElementById('auth-current-account-name').textContent = name
-      document.getElementById('auth-link-account-note').textContent = hasPassword
-        ? 'Ce formulaire conserve ton compte et ses sauvegardes ; tu peux modifier son pseudo.'
-        : 'Ton compte GitHub sera conservé. L’adresse e-mail confirmée de ce compte servira à la récupération.'
-      const usernameInput = document.getElementById('account-link-username')
-      if (document.activeElement !== usernameInput) usernameInput.value = cloudProfileUsername ?? ''
-      const passwordFields = document.getElementById('account-link-password-fields')
-      passwordFields.hidden = hasPassword
-      document.getElementById('account-link-password').required = !hasPassword
-      document.getElementById('account-link-password-confirm').required = !hasPassword
+        ? `Signed in with GitHub as ${name}.`
+        : 'Your GitHub account is connected.'
     }
 
     const renderCloudIdentity = () => {
       const fallbackName = cloudUser?.user_metadata?.user_name ?? cloudUser?.user_metadata?.preferred_username
       if (!supabaseConfigured) {
-        cloudAuthState.textContent = 'Supabase n’est pas configuré. Les sauvegardes locales restent disponibles.'
-        setCloudSyncIndicator('Synchronisation cloud non configurée.')
+        cloudAuthState.textContent = 'Supabase is not configured. Local saves are still available.'
+        setCloudSyncIndicator('Cloud sync is not configured.')
       } else if (!cloudSaveService) {
-        cloudAuthState.textContent = 'IndexedDB est indisponible sur ce navigateur ; la synchronisation cloud est désactivée.'
-        setCloudSyncIndicator('Stockage local de reprise indisponible.')
+        cloudAuthState.textContent = 'IndexedDB is unavailable in this browser; cloud sync is disabled.'
+        setCloudSyncIndicator('Local recovery storage is unavailable.')
       } else if (cloudUser) {
-        const name = cloudProfileUsername ?? fallbackName
-        cloudAuthState.textContent = name
-          ? `Connecté sous @${name}.`
-          : 'Compte connecté. Ajoute un pseudo pour utiliser la connexion classique.'
-        setCloudSyncIndicator('Compte prêt pour la synchronisation.')
+        cloudAuthState.textContent = fallbackName
+          ? `Signed in with GitHub as ${fallbackName}.`
+          : 'Signed in with GitHub.'
+        setCloudSyncIndicator('Account ready to sync.')
       } else {
-        cloudAuthState.textContent = 'Non connecté. Utilise GitHub ou ton pseudo et ton mot de passe.'
-        setCloudSyncIndicator('Synchronisation inactive.')
+        cloudAuthState.textContent = 'Not signed in. Sign in with GitHub to sync your saves.'
+        setCloudSyncIndicator('Cloud sync is inactive.')
       }
       cloudSignIn.hidden = Boolean(cloudUser)
       cloudSignOut.hidden = !cloudUser
-      cloudClassicAuthButton.hidden = Boolean(cloudUser)
-      cloudClassicAuthButton.disabled = !supabaseConfigured
       headerAuthButton.textContent = cloudUser
-        ? cloudProfileUsername ? `@${cloudProfileUsername}` : fallbackName ?? 'Mon compte'
-        : 'Se connecter'
-      if (authDialog.open && cloudUser && authView === 'account') renderCurrentAccountDetails()
+        ? fallbackName ?? 'My account'
+        : 'Sign in'
+      if (authDialog.open && cloudUser) renderCurrentAccountDetails()
       updateCloudButtons()
-    }
-
-    const refreshCloudIdentity = async (user) => {
-      if (!supabaseClient || !user) return
-      const userId = user.id
-      try {
-        const { data, error } = await supabaseClient.from('profiles')
-          .select('username')
-          .eq('id', userId)
-          .maybeSingle()
-        if (error) throw error
-        if (cloudUser?.id !== userId) return
-        cloudProfileUsername = data?.username ?? null
-        renderCloudIdentity()
-      } catch (error) {
-        setCloudMessage(`Impossible de lire ton profil. Applique le SQL username-auth.sql : ${error.message}`, true)
-      }
     }
 
     const updateCloudButtons = () => {
@@ -982,8 +928,8 @@
       cloudSignIn.disabled = !supabaseConfigured || Boolean(cloudUser)
       cloudSignOut.disabled = !cloudUser || cloudBusy
       cloudSaveButton.disabled = !canSync
+      cloudVersionSelect.disabled = !canSync || !cloudVersions.length
       cloudRestoreButton.disabled = !canSync || !cloudVersionSelect.value
-      cloudClassicAuthButton.disabled = !supabaseConfigured
     }
 
     const refreshCloudPanel = async () => {
@@ -999,41 +945,47 @@
         cloudVersions = versions
         cloudVersionSelect.replaceChildren()
         if (!versions.length) {
-          cloudVersionSelect.add(new Option('Aucune sauvegarde cloud', ''))
+          cloudVersionSelect.add(new Option('No cloud saves', ''))
         } else {
           for (const [index, version] of versions.entries()) {
-            const label = new Date(version.createdAt).toLocaleString('fr-FR')
-            cloudVersionSelect.add(new Option(`${index === 0 ? 'La plus récente' : `Version ${index + 1}`} · ${label}`, version.name))
+            const label = new Date(version.createdAt).toLocaleString('en-US')
+            cloudVersionSelect.add(new Option(`${index === 0 ? 'Most recent' : `Version ${index + 1}`} · ${label}`, version.name))
           }
           cloudVersionSelect.value = versions[0].name
         }
 
         const lastAt = syncState?.lastSyncedAt ?? versions[0]?.createdAt
         cloudLastSync.textContent = lastAt
-          ? `Dernière synchronisation : ${new Date(lastAt).toLocaleString('fr-FR')}`
-          : 'Dernière synchronisation : aucune.'
+          ? `Last synced: ${new Date(lastAt).toLocaleString('en-US')}`
+          : 'Last synced: never.'
         cloudSafetyButton.hidden = !safetyBackup
         updateCloudButtons()
       } catch (error) {
-        setCloudMessage(`Impossible de lire l’espace cloud. Vérifie le bucket privé et ses politiques RLS : ${error.message}`, true)
+        setCloudMessage(`Could not read cloud storage. Check the private bucket and its RLS policies: ${error.message}`, true)
       }
     }
 
     const renderCloudAuth = (user) => {
+      if (user && !isGitHubUser(user)) {
+        user = null
+        setAuthStatus('Only GitHub accounts are supported. This session will be signed out.')
+        setCloudMessage('Only GitHub accounts are supported. Signing out this session.', true)
+        // Do not perform auth calls inside onAuthStateChange: Supabase holds an
+        // internal lock while invoking listeners.
+        setTimeout(() => { void supabaseClient?.auth.signOut() }, 0)
+      }
       const nextUserId = user?.id ?? null
       if ((cloudUser?.id ?? null) !== nextUserId) {
         cloudVersions = []
-        cloudProfileUsername = null
-        cloudVersionSelect.replaceChildren(new Option('Aucune sauvegarde cloud', ''))
-        cloudLastSync.textContent = 'Dernière synchronisation : aucune.'
+        cloudVersionSelect.replaceChildren(new Option('No cloud saves', ''))
+        cloudLastSync.textContent = 'Last synced: never.'
         cloudSafetyButton.hidden = true
       }
       cloudUser = user ?? null
       renderCloudIdentity()
-      if (authDialog.open && !passwordRecoveryActive) showAuthView(cloudUser ? 'account' : 'login')
+      if (authDialog.open) showAuthView()
       if (cloudUser && cloudSaveService) {
         setTimeout(() => {
-          void refreshCloudIdentity(cloudUser)
           void refreshCloudPanel()
           void resumeCloudQueue()
         }, 0)
@@ -1045,26 +997,26 @@
       try {
         const result = await cloudSaveService.flushPending(cloudUser.id)
         if (result.status === 'saved') {
-          setCloudSyncIndicator('Sauvegarde locale synchronisée.')
-          setCloudMessage('La sauvegarde en attente a été envoyée.')
+          setCloudSyncIndicator('Local save synced.')
+          setCloudMessage('The pending save was uploaded.')
           await refreshCloudPanel()
         } else if (result.status === 'queued') {
-          setCloudSyncIndicator('Sauvegarde conservée localement ; synchronisation en attente.')
+          setCloudSyncIndicator('Save kept locally; waiting to sync.')
           setCloudMessage(result.message)
         }
       } catch (error) {
-        setCloudSyncIndicator('Une sauvegarde attend toujours la connexion.')
-        setCloudMessage(`Reprise cloud impossible : ${error.message}`, true)
+        setCloudSyncIndicator('A save is still waiting for a connection.')
+        setCloudMessage(`Could not resume cloud sync: ${error.message}`, true)
       }
     }
 
     cloudSignIn.addEventListener('click', async () => {
       if (!supabaseClient) {
-        setCloudMessage('Configure SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY dans .env.local puis reconstruis le site.', true)
+        setCloudMessage('Set SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY in .env.local, then rebuild the site.', true)
         return
       }
       cloudSignIn.disabled = true
-      setCloudMessage('Redirection vers GitHub…')
+      setCloudMessage('Redirecting to GitHub…')
       try {
         const callback = createOAuthRedirectUrl(window.location)
         await signInWithGitHub(supabaseClient.auth, callback)
@@ -1076,11 +1028,11 @@
 
     const startGitHubSignIn = async (button) => {
       if (!supabaseClient) {
-        setAuthStatus('Configure Supabase avant de te connecter.', true)
+        setAuthStatus('Configure Supabase before signing in.', true)
         return
       }
       button.disabled = true
-      setAuthStatus('Redirection vers GitHub…')
+      setAuthStatus('Redirecting to GitHub…')
       try {
         const callback = createOAuthRedirectUrl(window.location)
         await signInWithGitHub(supabaseClient.auth, callback)
@@ -1092,188 +1044,47 @@
 
     authGitHubButton.addEventListener('click', () => void startGitHubSignIn(authGitHubButton))
 
-    document.getElementById('auth-tab-login').addEventListener('click', () => {
-      setAuthStatus('')
-      showAuthView('login')
-    })
-    document.getElementById('auth-tab-register').addEventListener('click', () => {
-      setAuthStatus('')
-      showAuthView('register')
-    })
-    cloudClassicAuthButton.addEventListener('click', () => {
-      openAuthDialog()
-      if (!cloudUser) showAuthView('login')
-    })
-
-    const withAuthForm = async (form, action) => {
-      const submit = form.querySelector('[type="submit"]')
-      if (submit) submit.disabled = true
-      try {
-        await action(new FormData(form))
-      } catch (error) {
-        setAuthStatus(error instanceof Error ? error.message : 'Action impossible. Réessaie plus tard.', true)
-      } finally {
-        if (submit) submit.disabled = false
-      }
-    }
-
-    authLoginForm.addEventListener('submit', (event) => {
-      event.preventDefault()
-      void withAuthForm(authLoginForm, async (form) => {
-        if (!supabaseClient) throw new Error('Configure Supabase avant de te connecter.')
-        setAuthStatus('Connexion…')
-        await signInWithUsername(
-          supabaseClient,
-          String(form.get('username') ?? ''),
-          String(form.get('password') ?? ''),
-        )
-        passwordRecoveryActive = false
-        setAuthStatus('Connexion réussie. Tes sauvegardes cloud sont disponibles.')
-        authDialog.close()
-      })
-    })
-
-    authRegisterForm.addEventListener('submit', (event) => {
-      event.preventDefault()
-      void withAuthForm(authRegisterForm, async (form) => {
-        if (!supabaseClient) throw new Error('Configure Supabase avant de créer un compte.')
-        setAuthStatus('Création du compte…')
-        const { session } = await registerWithUsername(supabaseClient, {
-          username: String(form.get('username') ?? ''),
-          email: String(form.get('email') ?? ''),
-          password: String(form.get('new-password') ?? ''),
-          confirmation: String(form.get('new-password-confirm') ?? ''),
-          emailRedirectTo: createOAuthRedirectUrl(window.location),
-        })
-        if (session) {
-          setAuthStatus('Compte créé et connecté. Les sauvegardes cloud sont disponibles.')
-          authDialog.close()
-        } else {
-          setAuthStatus('Si l’inscription est acceptée, consulte l’e-mail de récupération pour confirmer le compte.')
-        }
-      })
-    })
-
-    document.getElementById('forgot-password-open').addEventListener('click', () => {
-      setAuthStatus('')
-      showAuthView('recoveryRequest')
-    })
-    document.getElementById('recovery-back').addEventListener('click', () => {
-      setAuthStatus('')
-      showAuthView('login')
-    })
-
-    authRecoveryRequest.addEventListener('submit', (event) => {
-      event.preventDefault()
-      void withAuthForm(authRecoveryRequest, async (form) => {
-        if (!supabaseClient) throw new Error('Configure Supabase avant de récupérer un compte.')
-        setAuthStatus('Envoi du lien…')
-        await sendPasswordRecovery(
-          supabaseClient,
-          String(form.get('email') ?? ''),
-          createOAuthRedirectUrl(window.location),
-        )
-        setAuthStatus('Si un compte correspond à cette adresse, un lien de récupération vient d’être envoyé.')
-      })
-    })
-
-    authRecoveryComplete.addEventListener('submit', (event) => {
-      event.preventDefault()
-      void withAuthForm(authRecoveryComplete, async (form) => {
-        if (!supabaseClient) throw new Error('Configure Supabase avant de modifier le mot de passe.')
-        const password = String(form.get('new-password') ?? '')
-        const confirmation = String(form.get('new-password-confirm') ?? '')
-        if (password.length < 12) throw new Error('Le mot de passe doit contenir au moins 12 caractères.')
-        if (password !== confirmation) throw new Error('Les deux mots de passe ne correspondent pas.')
-        const { error } = await supabaseClient.auth.updateUser({ password })
-        if (error) throw new Error('Impossible de mettre à jour le mot de passe. Réessaie plus tard.')
-        passwordRecoveryActive = false
-        setAuthStatus('Mot de passe mis à jour. Tu peux te connecter avec ton pseudo.')
-        authDialog.close()
-      })
-    })
-
-    authLinkForm.addEventListener('submit', (event) => {
-      event.preventDefault()
-      void withAuthForm(authLinkForm, async (form) => {
-        if (!supabaseClient || !cloudUser) throw new Error('Connecte-toi avant de modifier ton compte.')
-        setAuthStatus('Mise à jour du compte…')
-        const currentUserId = cloudUser.id
-        await linkUsernameAndPassword({
-          async getCurrentUser() {
-            const { data, error } = await supabaseClient.auth.getUser()
-            if (error) throw error
-            const user = data.user
-            return user ? {
-              id: user.id,
-              email: user.email ?? null,
-              emailConfirmed: Boolean(user.email_confirmed_at),
-            } : null
-          },
-          async updatePassword(password) {
-            const { error } = await supabaseClient.auth.updateUser({ password })
-            if (error) throw new Error('Impossible d’ajouter le mot de passe. Vérifie que l’adresse e-mail est confirmée.')
-          },
-          async updateUsername(userId, username) {
-            const { data, error } = await supabaseClient.from('profiles')
-              .update({ username })
-              .eq('id', userId)
-              .select('id')
-              .maybeSingle()
-            if (error || !data) {
-              throw new Error('Pseudo indisponible ou profil non initialisé. Vérifie le SQL profiles puis réessaie.')
-            }
-            cloudProfileUsername = username
-          },
-        }, {
-          currentUserId,
-          username: String(form.get('username') ?? ''),
-          password: String(form.get('new-password') ?? ''),
-          confirmation: String(form.get('new-password-confirm') ?? ''),
-          addPassword: !document.getElementById('account-link-password-fields').hidden,
-        })
-        renderCloudIdentity()
-        setAuthStatus('Pseudo et compte mis à jour. Tes sauvegardes restent liées à ce compte.')
-      })
-    })
-
     document.getElementById('auth-dialog').addEventListener('close', () => {
-      if (!passwordRecoveryActive) setAuthStatus('')
+      setAuthStatus('')
     })
 
-    cloudSignOut.addEventListener('click', async () => {
+    const signOut = async () => {
       if (!supabaseClient) return
       cloudSignOut.disabled = true
+      authSignOut.disabled = true
       try {
         await signOutFromSupabase(supabaseClient.auth)
         renderCloudAuth(null)
-        setCloudMessage('Déconnecté. Tes sauvegardes locales n’ont pas été modifiées.')
+        setCloudMessage('Signed out. Your local saves were not changed.')
       } catch (error) {
         setCloudMessage(error.message, true)
       } finally {
+        authSignOut.disabled = false
         updateCloudButtons()
       }
-    })
+    }
+    cloudSignOut.addEventListener('click', () => void signOut())
+    authSignOut.addEventListener('click', () => void signOut())
 
     cloudSaveButton.addEventListener('click', async () => {
       if (!cloudUser || !cloudSaveService || cloudBusy) return
       cloudBusy = true
       updateCloudButtons()
-      setCloudSyncIndicator('Vérification et envoi de la sauvegarde…', true)
-      setCloudMessage('Création d’une archive locale stable…')
+      setCloudSyncIndicator('Verifying and uploading save…', true)
+      setCloudMessage('Creating a stable local archive…')
       try {
         const result = await cloudSaveService.saveNow(cloudUser.id)
         if (result.status === 'saved') {
-          setCloudSyncIndicator(`Synchronisé le ${new Date().toLocaleString('fr-FR')}.`)
-          setCloudMessage(result.alreadyPresent ? 'Cette sauvegarde existe déjà dans le cloud.' : 'Nouvelle version sauvegardée dans le cloud.')
+          setCloudSyncIndicator(`Synced at ${new Date().toLocaleString('en-US')}.`)
+          setCloudMessage(result.alreadyPresent ? 'This save already exists in the cloud.' : 'New version saved to the cloud.')
           await refreshCloudPanel()
         } else if (result.status === 'queued') {
-          setCloudSyncIndicator('Copie locale prête ; envoi à reprendre.', true)
-          setCloudMessage(`La progression locale est conservée. ${result.message}`, true)
+          setCloudSyncIndicator('Local copy ready; upload will resume later.', true)
+          setCloudMessage(`Local progress is safe. ${result.message}`, true)
         }
       } catch (error) {
-        setCloudSyncIndicator('Échec cloud ; la sauvegarde locale est conservée.')
-        setCloudMessage(`Sauvegarde cloud impossible : ${error.message}`, true)
+        setCloudSyncIndicator('Cloud save failed; the local save is safe.')
+        setCloudMessage(`Could not save to the cloud: ${error.message}`, true)
       } finally {
         cloudBusy = false
         updateCloudButtons()
@@ -1285,29 +1096,29 @@
       if (!cloudUser || !cloudSaveService || cloudBusy || !cloudVersionSelect.value) return
       cloudBusy = true
       updateCloudButtons()
-      setCloudSyncIndicator('Vérification de l’archive cloud…', true)
-      setCloudMessage('Téléchargement et vérification SHA-256 avant restauration…')
+      setCloudSyncIndicator('Verifying cloud archive…', true)
+      setCloudMessage('Downloading and verifying SHA-256 before restore…')
       try {
         const result = await cloudSaveService.restore(cloudUser.id, cloudVersionSelect.value, (details) => {
           if (details.localFileCount === 0) return true
           const conflict = details.localChangedSinceLastSync
-            ? 'La copie locale a changé depuis sa dernière synchronisation. '
+            ? 'The local copy has changed since the last sync. '
             : ''
           return window.confirm(
-            `${conflict}La restauration peut remplacer les mêmes fichiers de sauvegarde locaux. Une copie de sécurité locale sera créée avant l’import. Continuer ?`,
+            `${conflict}Restoring may replace the same local save files. A local safety backup will be created before import. Continue?`,
           )
         })
         if (result.status === 'cancelled') {
-          setCloudSyncIndicator('Restauration annulée ; la copie locale est inchangée.')
-          setCloudMessage('Aucune sauvegarde locale n’a été modifiée.')
+          setCloudSyncIndicator('Restore cancelled; the local copy is unchanged.')
+          setCloudMessage('No local saves were changed.')
         } else {
-          setCloudSyncIndicator('Progression restaurée ; sauvegarde locale de sécurité créée.')
-          setCloudMessage(`${result.restoredFiles} fichier(s) restauré(s). Recharge la page avant de relancer Celeste.`)
+          setCloudSyncIndicator('Progress restored; a local safety backup was created.')
+          setCloudMessage(`${result.restoredFiles} file(s) restored. Reload the page before launching Celeste again.`)
           await refreshCloudPanel()
         }
       } catch (error) {
-        setCloudSyncIndicator('Échec de restauration ; les fichiers locaux restent disponibles.')
-        setCloudMessage(`Restauration impossible : ${error.message}`, true)
+        setCloudSyncIndicator('Restore failed; local files are still available.')
+        setCloudMessage(`Could not restore: ${error.message}`, true)
       } finally {
         cloudBusy = false
         updateCloudButtons()
@@ -1318,9 +1129,9 @@
       if (!cloudUser || !cloudSaveService) return
       try {
         const backup = await cloudSaveService.getLatestSafetyBackup(cloudUser.id)
-        if (!backup) throw new Error('Aucune copie de sécurité locale n’est disponible.')
+        if (!backup) throw new Error('No local safety backup is available.')
         download(backup.archive, `celeste-saves-safety-${backup.capturedAt.slice(0, 10)}.tar.gz`)
-        setCloudMessage('Copie de sécurité téléchargée. Elle reste également dans ce navigateur.')
+        setCloudMessage('Safety backup downloaded. It is also kept in this browser.')
       } catch (error) {
         setCloudMessage(error.message, true)
       }
@@ -1330,31 +1141,25 @@
       if (!saveRepository) return
       try {
         const backup = await saveRepository.getLatestSafetyBackup('local')
-        if (!backup) throw new Error('Aucune copie de sécurité locale n’est disponible.')
+        if (!backup) throw new Error('No local safety backup is available.')
         download(backup.archive, `celeste-saves-safety-${backup.capturedAt.slice(0, 10)}.tar.gz`)
-        setPrefsStatus('Copie de sécurité locale téléchargée ; elle reste conservée dans ce navigateur.')
+        setPrefsStatus('Local safety backup downloaded; it is still stored in this browser.')
       } catch (error) {
-        setPrefsStatus(`Téléchargement de la copie de sécurité impossible : ${error.message}`, true)
+        setPrefsStatus(`Could not download the safety backup: ${error.message}`, true)
       }
     })
 
     if (supabaseClient) {
-      supabaseClient.auth.onAuthStateChange((event, session) => {
+      supabaseClient.auth.onAuthStateChange((_event, session) => {
         // Keep this callback synchronous: schedule Storage work after Supabase
         // finishes its auth event so token refresh cannot deadlock.
         renderCloudAuth(session?.user ?? null)
-        if (event === 'PASSWORD_RECOVERY') {
-          passwordRecoveryActive = true
-          if (!authDialog.open) authDialog.showModal()
-          showAuthView('recoveryComplete')
-          setAuthStatus('Lien vérifié. Choisis ton nouveau mot de passe.')
-        }
       })
       void supabaseClient.auth.getSession().then(({ data, error }) => {
         if (error) throw error
         renderCloudAuth(data.session?.user ?? null)
       }).catch((error) => {
-        setCloudMessage(`État de connexion indisponible : ${error.message}`, true)
+        setCloudMessage(`Sign-in status unavailable: ${error.message}`, true)
       })
     } else {
       renderCloudAuth(null)
@@ -1362,7 +1167,7 @@
 
     window.addEventListener('online', () => {
       if (!cloudUser || !cloudSaveService) return
-      setCloudSyncIndicator('Connexion rétablie ; reprise de la synchronisation…', true)
+      setCloudSyncIndicator('Connection restored; resuming sync…', true)
       void resumeCloudQueue()
     })
 
@@ -1370,7 +1175,7 @@
 
     exportButton.addEventListener('click', async () => {
       exportButton.disabled = true
-      setPrefsStatus('Préparation de tes sauvegardes…')
+      setPrefsStatus('Preparing your saves…')
       try {
         // Buffered into a Blob because a download needs one and a save archive
         // is kilobytes. The SDK streams regardless — a host uploading this
@@ -1378,7 +1183,7 @@
         const archive = await new Response(await exportSaves()).blob()
         const stamp = new Date().toISOString().slice(0, 10)
         download(archive, `celeste-saves-${stamp}.tar.gz`)
-        setPrefsStatus(`${kb(archive.size)} de sauvegardes exportées.`)
+        setPrefsStatus(`${kb(archive.size)} of saves exported.`)
       } catch (err) {
         setPrefsStatus(err.message, true)
       } finally {
@@ -1395,19 +1200,19 @@
       if (!file) return
 
       importButton.disabled = true
-      setPrefsStatus('Restauration des sauvegardes…')
+      setPrefsStatus('Restoring saves…')
       try {
         const incoming = await inspectSaveArchive(file)
         const currentArchive = await new Response(await exportSaves()).blob()
         const current = await inspectSaveArchive(currentArchive)
         if (current.fileCount > 0 && !window.confirm(
-          'Cette restauration peut remplacer des fichiers de sauvegarde locaux. Une copie de sécurité sera conservée dans ce navigateur avant l’import. Continuer ?',
+          'This restore may replace local save files. A safety backup will be kept in this browser before import. Continue?',
         )) {
-          setPrefsStatus('Restauration annulée ; tes sauvegardes locales sont inchangées.')
+          setPrefsStatus('Restore cancelled; your local saves are unchanged.')
           return
         }
         if (!saveRepository) {
-          throw new Error('Impossible de créer une copie de sécurité locale dans ce navigateur ; la restauration est annulée.')
+          throw new Error('Could not create a local safety backup in this browser; restore cancelled.')
         }
         const safetyBackup = {
           userId: 'local',
@@ -1423,16 +1228,16 @@
 
         // The archive was fully hashed and parsed above, and current OPFS saves
         // are recoverable from the safety copy before importSaves can write.
-        if (!incoming.fileCount) setPrefsStatus('L’archive ne contient aucune sauvegarde ; vérification terminée.')
+        if (!incoming.fileCount) setPrefsStatus('The archive contains no saves; verification complete.')
         const restored = await importSaves(file)
         setPrefsStatus(
           restored === 0
-            ? 'Cette archive ne contient aucune sauvegarde.'
-            : `${restored} fichier${restored === 1 ? '' : 's'} restauré${restored === 1 ? '' : 's'}. Recharge la page pour les utiliser.`,
+            ? 'This archive contains no saves.'
+            : `${restored} file${restored === 1 ? '' : 's'} restored. Reload the page to use them.`,
           restored === 0,
         )
       } catch (err) {
-        setPrefsStatus(`Cette archive de sauvegarde est invalide : ${err.message}`, true)
+        setPrefsStatus(`This save archive is invalid: ${err.message}`, true)
       } finally {
         importButton.disabled = false
       }
@@ -1448,7 +1253,7 @@
     const disarm = () => {
       armed = false
       purgeButton.classList.remove('armed')
-      purgeButton.textContent = 'Tout supprimer du stockage'
+      purgeButton.textContent = 'Delete everything from storage'
     }
 
     prefs.addEventListener('close', disarm)
@@ -1457,25 +1262,25 @@
       if (!armed) {
         armed = true
         purgeButton.classList.add('armed')
-        purgeButton.textContent = 'Appuie encore pour tout supprimer'
-        setPrefsStatus('Cette action est irréversible — exporte tes sauvegardes avant de continuer.', true)
+        purgeButton.textContent = 'Press again to delete everything'
+        setPrefsStatus('This cannot be undone — export your saves before continuing.', true)
         return
       }
 
       disarm()
       purgeButton.disabled = true
-      setPrefsStatus('Suppression du stockage…')
+      setPrefsStatus('Deleting storage…')
       try {
         const { data, settings } = await purgeStorage()
         stagedReady = false
         if (!data && !settings) {
-          setPrefsStatus('Le stockage est déjà vide.')
+          setPrefsStatus('Storage is already empty.')
           return
         }
         // A reload rather than a message: Start, the launcher's slot and the
         // storage probe below all took their state from a storage that no
         // longer exists, and none of them can be talked out of it from here.
-        setPrefsStatus('Stockage supprimé — rechargement…')
+        setPrefsStatus('Storage deleted — reloading…')
         setTimeout(() => location.reload(), 600)
       } catch (err) {
         setPrefsStatus(err.message, true)

@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { CloudSaveService, createBrowserCloudSaveRepository } from './cloud-saves.js'
-import { createOAuthRedirectUrl, signInWithGitHub, signOutFromSupabase } from './cloud-auth.js'
+import { createOAuthRedirectUrl, isGitHubUser, signInWithGitHub, signOutFromSupabase } from './cloud-auth.js'
 
 declare const __SUPABASE_URL__: string
 declare const __SUPABASE_PUBLISHABLE_KEY__: string
@@ -20,4 +20,4 @@ export function createSupabaseClient() {
 }
 
 export { CloudSaveService, createBrowserCloudSaveRepository, inspectSaveArchive } from './cloud-saves.js'
-export { createOAuthRedirectUrl, signInWithGitHub, signOutFromSupabase }
+export { createOAuthRedirectUrl, isGitHubUser, signInWithGitHub, signOutFromSupabase }

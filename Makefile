@@ -88,6 +88,7 @@ build-manifest: build-lib ## Serialize typed manifest → dist/manifest.json
 
 build-demo-ts: build-lib ## Compile the demo TypeScript without replacing dist/demo
 	$(BIN)/tsc -p tsconfig.demo.json
+	@rm -f dist/classic-auth.js dist/classic-auth.js.map
 	node scripts/build-supabase-bundle.mjs
 
 build-demo: build-demo-ts ## Compile the demo page + copy the shared template

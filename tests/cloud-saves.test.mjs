@@ -4,7 +4,7 @@ import test from 'node:test';
 import { transform } from 'esbuild';
 
 import { CloudSaveService, inspectSaveArchive } from '../dist/cloud-saves.js';
-import { createOAuthRedirectUrl, signInWithGitHub, signOutFromSupabase } from '../dist/cloud-auth.js';
+import { createOAuthRedirectUrl, isGitHubUser, signInWithGitHub, signOutFromSupabase } from '../dist/cloud-auth.js';
 import { tarStream } from '../dist/celeste/celeste.tar.js';
 
 const USER_A = '11111111-1111-4111-8111-111111111111';
@@ -125,6 +125,14 @@ test('GitHub auth actions use the callback URL and expose sign-out errors', asyn
   await assert.rejects(signOutFromSupabase({ ...auth, async signOut() { return { error: { message: 'denied' } }; } }), /denied/);
 });
 
+test('only users with a GitHub identity pass the cloud-auth provider check', () => {
+  assert.equal(isGitHubUser({ app_metadata: { provider: 'github' } }), true);
+  assert.equal(isGitHubUser({ app_metadata: { providers: ['email', 'github'] } }), true);
+  assert.equal(isGitHubUser({ identities: [{ provider: 'github' }] }), true);
+  assert.equal(isGitHubUser({ app_metadata: { provider: 'email' } }), false);
+  assert.equal(isGitHubUser(null), false);
+});
+
 test('OAuth redirects always include an absolute HTTP(S) scheme', async () => {
   assert.equal(
     createOAuthRedirectUrl({ origin: 'http://127.0.0.1:8033', pathname: '/' }),
@@ -136,14 +144,14 @@ test('OAuth redirects always include an absolute HTTP(S) scheme', async () => {
   );
   assert.throws(
     () => createOAuthRedirectUrl({ origin: '127.0.0.1:8033', pathname: '/' }),
-    /origine absolue/,
+    /absolute origin/,
   );
 
   let called = false;
   await assert.rejects(signInWithGitHub({
     async signInWithOAuth() { called = true; return { error: null }; },
     async signOut() { return { error: null }; },
-  }, '127.0.0.1:8033'), /URL absolue/);
+  }, '127.0.0.1:8033'), /absolute URL/);
   assert.equal(called, false, 'invalid redirect must be rejected before calling Supabase');
 });
 
@@ -281,7 +289,7 @@ test('another authenticated user cannot list or restore this user’s versions',
 
   assert.equal((await savesB.listVersions(USER_B)).length, 0);
   const privateName = (await savesA.listVersions(USER_A))[0].name;
-  await assert.rejects(savesB.restore(USER_B, privateName, () => true), /n’existe plus/);
+  await assert.rejects(savesB.restore(USER_B, privateName, () => true), /no longer exists/);
   assert.ok(storage.requests.filter((item) => item.user === USER_B).every((item) => item.path === USER_B));
 });
 
@@ -291,10 +299,10 @@ test('the UI exposes cloud controls, validates before restoring, and RLS grants 
   const inlineModule = [...html.matchAll(/<script type="module">([\s\S]*?)<\/script>/g)].at(-1)?.[1];
   assert.ok(inlineModule);
   await transform(inlineModule, { loader: 'js', format: 'esm' });
-  assert.match(html, /Se connecter avec GitHub/);
-  assert.match(html, /Se déconnecter/);
-  assert.match(html, /Sauvegarder maintenant/);
-  assert.match(html, /Restaurer ma progression/);
+  assert.match(html, /Sign in with GitHub/);
+  assert.match(html, /Sign out/);
+  assert.match(html, /Save now/);
+  assert.match(html, /Restore my progress/);
   assert.match(html, /cloud-sync-indicator/);
   assert.match(html, /createOAuthRedirectUrl\(window\.location\)/);
   assert.doesNotMatch(html, /location\.host\b/);
