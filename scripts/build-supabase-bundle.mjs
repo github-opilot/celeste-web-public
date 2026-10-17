@@ -2,6 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { build } from 'esbuild'
 
 const root = new URL('../', import.meta.url)
+const isCloudflarePagesBuild = process.env.CF_PAGES === '1'
 
 function parseEnv(contents) {
   const values = Object.create(null)
@@ -20,18 +21,25 @@ function parseEnv(contents) {
 }
 
 let fileEnv = {}
-try {
-  fileEnv = parseEnv(await readFile(new URL('.env.local', root), 'utf8'))
-} catch (error) {
-  if (error.code !== 'ENOENT') throw error
+// Cloudflare values must come from the Pages build environment. Do not let a
+// local .env.local hide missing dashboard configuration during a deploy.
+if (!isCloudflarePagesBuild) {
+  try {
+    fileEnv = parseEnv(await readFile(new URL('.env.local', root), 'utf8'))
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error
+  }
 }
 
 const supabaseUrl = process.env.SUPABASE_URL ?? fileEnv.SUPABASE_URL ?? ''
 const publishableKey = process.env.SUPABASE_PUBLISHABLE_KEY ?? fileEnv.SUPABASE_PUBLISHABLE_KEY ?? ''
 const runtimeBaseUrl = process.env.CELESTE_RUNTIME_BASE_URL ?? fileEnv.CELESTE_RUNTIME_BASE_URL ?? ''
 
+if (isCloudflarePagesBuild && (!supabaseUrl || !publishableKey)) {
+  throw new Error('Cloudflare Pages build requires SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY. Set both in the Pages build environment and redeploy.')
+}
 if (Boolean(supabaseUrl) !== Boolean(publishableKey)) {
-  throw new Error('Configure SUPABASE_URL et SUPABASE_PUBLISHABLE_KEY ensemble dans .env.local.')
+  throw new Error('Configure SUPABASE_URL and SUPABASE_PUBLISHABLE_KEY together in the build environment.')
 }
 if (supabaseUrl) {
   const parsed = new URL(supabaseUrl)
