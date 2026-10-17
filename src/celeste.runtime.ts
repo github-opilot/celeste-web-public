@@ -111,6 +111,8 @@ export const JITERPRETER_OPTIONS: readonly string[] = [
 export interface RuntimeDescriptor {
   repository?: string;
   revision?: string | null;
+  /** Count of dotnet.native.*.wasmN files expected at the runtime origin. */
+  nativeWasmParts?: number;
   builtFromSource?: boolean;
   /** Namespace the loader was built with; null or absent means the mount root. */
   storageNamespace?: string | null;
@@ -193,17 +195,46 @@ export function runtimeFiles(baseUrl: string): RuntimeFiles {
  * it and this stitches it back together. The pieces are `…wasm0`, `…wasm1`, …;
  * the run ends at the first request that 404s or comes back as an error page.
  */
-export function splitWasmLoader(fetchImpl: typeof fetch = fetch): ResourceLoader {
+export function splitWasmLoader(
+  fetchImpl: typeof fetch = fetch,
+  expectedParts?: number,
+): ResourceLoader {
   return (type, _name, defaultUri, _integrity, behavior) => {
     if (type !== 'dotnetwasm' || behavior !== 'dotnetwasm') return undefined;
+    if (expectedParts !== undefined && (!Number.isSafeInteger(expectedParts) || expectedParts < 1)) {
+      throw new Error(`celeste: runtime.json has an invalid nativeWasmParts value (${expectedParts})`);
+    }
 
     let index = 0;
     const nextPiece = async (): Promise<ReadableStreamDefaultReader<Uint8Array> | null> => {
-      const response = await fetchImpl(`${defaultUri}${index++}`);
-      if (!response.body) return null;
+      const part = index++;
+      const url = `${defaultUri}${part}`;
+      let response: Response;
+      try {
+        response = await fetchImpl(url);
+      } catch (cause) {
+        throw new Error(
+          `celeste: network error downloading WebAssembly part ${part + 1}` +
+            (expectedParts === undefined ? '' : ` of ${expectedParts}`) +
+            ` from ${url}`,
+          { cause },
+        );
+      }
+
       const isPiece =
-        response.status === 200 && !(response.headers.get('content-type') ?? '').includes('text/html');
-      return isPiece ? (response.body as ReadableStream<Uint8Array>).getReader() : null;
+        response.ok &&
+        !!response.body &&
+        !(response.headers.get('content-type') ?? '').includes('text/html');
+      if (!isPiece) {
+        if (expectedParts !== undefined) {
+          throw new Error(
+            `celeste: WebAssembly part ${part + 1} of ${expectedParts} could not be downloaded from ${url} ` +
+              `(HTTP ${response.status})`,
+          );
+        }
+        return null;
+      }
+      return (response.body as ReadableStream<Uint8Array>).getReader();
     };
 
     return (async () => {
@@ -214,17 +245,25 @@ export function splitWasmLoader(fetchImpl: typeof fetch = fetch): ResourceLoader
 
       const stream = new ReadableStream<Uint8Array>({
         async pull(controller) {
-          for (;;) {
-            const { done, value } = await current!.read();
-            if (!done && value) {
-              controller.enqueue(value);
-              return;
+          try {
+            for (;;) {
+              const { done, value } = await current!.read();
+              if (!done && value) {
+                controller.enqueue(value);
+                return;
+              }
+              if (expectedParts !== undefined && index >= expectedParts) {
+                controller.close();
+                return;
+              }
+              current = await nextPiece();
+              if (!current) {
+                controller.close();
+                return;
+              }
             }
-            current = await nextPiece();
-            if (!current) {
-              controller.close();
-              return;
-            }
+          } catch (error) {
+            controller.error(error);
           }
         },
       });

@@ -1048,7 +1048,7 @@ export async function load(config: CelesteLoadConfig): Promise<CelesteInstance> 
           ...(opts.jiterpreter ? JITERPRETER_OPTIONS : []),
           ...(opts.extraRuntimeOptions ?? []),
         ])
-        .withResourceLoader(splitWasmLoader(fetchImpl))
+        .withResourceLoader(splitWasmLoader(fetchImpl, descriptor?.nativeWasmParts))
         .create();
     });
 

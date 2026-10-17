@@ -23,8 +23,8 @@ set -euo pipefail
 #
 # Env knobs (all optional):
 #   RUNTIME_REPO     Loader repository
-#   RUNTIME_REF      Release tag to download        (default: latest)
-#   RUNTIME_REV      Commit the release was cut at  (recorded for provenance)
+#   RUNTIME_REF      Release tag to download        (default: latest, mutable)
+#   RUNTIME_REV      Commit to check out for a source build; not proof of a downloaded bundle
 #   RUNTIME_SOURCE   Set to 1 to build from source instead of downloading
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -147,14 +147,19 @@ main() {
   # from the artifact alone.
   node -e '
     const fs = require("fs");
-    const [dest, repo, ref, rev, source, ns] = process.argv.slice(1);
+    const [dest, framework, repo, ref, rev, source, ns] = process.argv.slice(1);
+    const nativeWasmParts = fs.readdirSync(framework)
+      .filter((name) => /^dotnet\.native\..*\.wasm\d+$/.test(name)).length;
+    if (!nativeWasmParts) throw new Error(`no split dotnet.native wasm files in ${framework}`);
     fs.writeFileSync(dest, JSON.stringify({
-      repository: repo, ref, revision: rev || null,
+      repository: repo, ref,
+      revision: source === "1" ? (rev || null) : null,
+      nativeWasmParts,
       builtFromSource: source === "1",
       storageNamespace: source === "1" ? (ns || null) : null,
       installedAt: new Date().toISOString(),
     }, null, 2) + "\n");
-  ' "${DIST_DIR}/runtime.json" "$RUNTIME_REPO" "$RUNTIME_REF" "$RUNTIME_REV" "$RUNTIME_SOURCE" "${LOADER_NAMESPACE:-}"
+  ' "${DIST_DIR}/runtime.json" "${DIST_DIR}/_framework" "$RUNTIME_REPO" "$RUNTIME_REF" "$RUNTIME_REV" "$RUNTIME_SOURCE" "${LOADER_NAMESPACE:-}"
 
   node "${PROJECT_DIR}/scripts/verify-runtime.mjs" "${DIST_DIR}/_framework"
 

@@ -1,0 +1,23 @@
+{
+  "rules": [
+    {
+      "id": "celeste-pages-read-only",
+      "allowed": {
+        "origins": [
+          "https://REPLACE_WITH_PROJECT.pages.dev",
+          "https://REPLACE_WITH_PRODUCTION_DOMAIN"
+        ],
+        "methods": ["GET", "HEAD"],
+        "headers": ["Range"]
+      },
+      "exposeHeaders": [
+        "Accept-Ranges",
+        "Content-Length",
+        "Content-Range",
+        "Content-Type",
+        "ETag"
+      ],
+      "maxAgeSeconds": 3600
+    }
+  ]
+}

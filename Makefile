@@ -38,8 +38,8 @@ EVEREST_BUILD ?= 0
 # --- Runtime -----------------------------------------------------------------
 # The .NET-for-WebAssembly runtime that loads and patches the player's Celeste:
 # dotnet.js, the split dotnet.native.wasm, FNA/FMOD/SDL3 statics and the
-# MonoMod.WASM assemblies. Built from the loader repo below; by default the
-# pinned prebuilt bundle is downloaded instead, which is what almost everyone
+# MonoMod.WASM assemblies. Built from the loader repo below; by default a
+# prebuilt bundle from RUNTIME_REF is downloaded instead, which is what almost everyone
 # wants — the source build AOT compiles and links a ~100 MB wasm binary.
 #
 # `make build-runtime-docker` is that source build, containerised. Reach for it
