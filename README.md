@@ -2,6 +2,10 @@
 
 A browser-based Celeste launcher built with TypeScript and WebAssembly. Players import their own copy of the game; game files are not included or uploaded. This project is independent and is not affiliated with or endorsed by Maddy Makes Games.
 
+# Direct access
+
+Available at : https://clstweb.pages.dev/
+
 ## Development
 
 Requirements: Node.js 24 and Python 3.
